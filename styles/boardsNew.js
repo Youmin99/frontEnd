@@ -69,16 +69,6 @@ export const Contents = styled.textarea`
   border: 1px solid #bdbdbd;
 `;
 
-export const WriterError = styled.div`
-
-`;
-export const PasswordError = styled.div`
-`;
-export const SubjectError = styled.div`
-`;
-export const ContentsError = styled.div`
-`;
-
 export const ZipcodeWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -176,4 +166,10 @@ export const SubmitButton = styled.button`
   cursor: pointer;
 
   background-color: yellow;
+`;
+
+export const Error = styled.div`
+  padding-top: 10px;
+  font-size: 14px;
+  color: red;
 `;
