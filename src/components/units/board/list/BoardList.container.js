@@ -15,8 +15,6 @@ export default function BoardList() {
     router.push(`/boards/${event.target.id}`);
   };
 
-  console.log(data);
-
   return (
     <BoardListUI
       data={data}
