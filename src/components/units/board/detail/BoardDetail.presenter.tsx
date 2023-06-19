@@ -1,5 +1,5 @@
 import * as S from "./BoardDetail.styles";
-import { getDate } from '../../../../../src/commons/libraries/utils'
+import { getDate } from '../../../../commons/libraries/utils'
 
 export default function BoardDetailUI(props){
     return (
@@ -22,7 +22,7 @@ export default function BoardDetailUI(props){
             </S.Body>
             </S.CardWrapper>
             <S.BottomWrapper>
-            <S.Button>목록으로</S.Button>
+            <S.Button onClick={props.onClickMoveToBoardList}>목록으로</S.Button>
             <S.Button onClick={props.onClickMoveToBoardEdit}>수정하기</S.Button>
             <S.Button>삭제하기</S.Button>
             </S.BottomWrapper>
