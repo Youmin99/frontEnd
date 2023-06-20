@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 import { ISubmitButtonProps } from "./BoardCommentWrite.types";
 
 export const Wrapper = styled.div`
-  width: 1200px;
-  /* height: 1847px; */
+  width: 1000px;
+  /* height: 400px; */
   border: 1px solid black;
   margin: 100px;
   padding-top: 80px;
