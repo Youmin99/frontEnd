@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const CREATE_BOARD = gql`
+export const FETCH_BOARD_COMMENTS = gql`
   mutation createBoard($createBoardInput: CreateBoardInput!){
     createBoard(createBoardInput: $createBoardInput){
       _id

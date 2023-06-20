@@ -1,36 +1,32 @@
-import { getDate } from "../../../../commons/libraries/utils";
-import * as S from "./BoardCommentList.styles";
-import { IBoardListUIProps } from "./BoardCommentList.types";
+import { getDate } from '../../../../commons/libraries/utils';
+import * as S from './BoardCommentList.styles'
+import { IBoardCommentListUIProps } from "./BoardCommentList.types";
 
-export default function BoardListUI(props: IBoardListUIProps) {
+export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
   return (
-    <S.Wrapper>
-      <S.TableTop />
-      <S.Row>
-        <S.ColumnHeaderBasic>ID</S.ColumnHeaderBasic>
-        <S.ColumnHeaderTitle>제목</S.ColumnHeaderTitle>
-        <S.ColumnHeaderBasic>작성자</S.ColumnHeaderBasic>
-        <S.ColumnHeaderBasic>날짜</S.ColumnHeaderBasic>
-      </S.Row>
-      {props.data?.fetchBoards.map((el) => (
-        <S.Row key={el._id}>
-          <S.ColumnBasic>
-            {String(el._id).slice(-4).toUpperCase()}
-          </S.ColumnBasic>
-          <S.ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
-            {el.title}
-          </S.ColumnTitle>
-          <S.ColumnBasic>{el.writer}</S.ColumnBasic>
-          <S.ColumnBasic>{getDate(el.createdAt)}</S.ColumnBasic>
-        </S.Row>
-      ))}
-      <S.TableBottom />
-      <S.Footer>
-        <S.Button onClick={props.onClickMoveToBoardNew}>
-          <S.PencilIcon src="/images/board/list/write.png" />
-          게시물 등록하기
-        </S.Button>
-      </S.Footer>
-    </S.Wrapper>
+      <div>
+        {props.data?.fetchBoardComments.map((el) => (
+          <S.ItemWrapper>
+            <S.FlexWrapper>
+              <S.Avatar src="/images/avatar.png" />
+              <S.MainWrapper>
+                <S.WriterWrapper>
+                  <S.Writer>{el.writer}</S.Writer>
+                </S.WriterWrapper>
+                <S.Contents>{el.contents}</S.Contents>
+              </S.MainWrapper>
+              <S.OptionWrapper>
+                <S.UpdateIcon src="/images/boardComment/list/option_update_icon.png/" />
+                <S.DeleteIcon
+                  id={el._id}
+                  src="/images/boardComment/list/option_delete_icon.png/"
+                  onClick={props.onClickDelete}
+                />
+              </S.OptionWrapper>
+            </S.FlexWrapper>
+            <S.DateString>{getDate(el?.createdAt)}</S.DateString>
+          </S.ItemWrapper>
+        ))}
+      </div>
   );
 }
