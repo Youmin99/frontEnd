@@ -2,31 +2,31 @@ import { ChangeEvent, useState } from "react";
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import BoardCommentWriteUI from './BoardCommentWrite.presenter'
-import { FETCH_BOARD_COMMENTS, UPDATE_BOARD } from './BoardCommentWrite.queries'
-import { IMutation, IMutationCreateBoardCommentArgs, IUpdateBoardInput } from "../../../../commons/types/generated/types";
-import { IBoardWriteProps } from "./BoardCommentWrite.types";
+import { CREATE_BOARD_COMMENT } from './BoardCommentWrite.queries'
+import { IMutation, IMutationCreateBoardCommentArgs } from "../../../../commons/types/generated/types";
 
-export default function BoardWrite(props: IBoardWriteProps){
+
+export default function BoardWrite(){
   const router = useRouter()
 
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
 
- 
 
-  const [createBoardComment] = useMutation<Pick<IMutation, "createBoardComment">, IMutationCreateBoardCommentArgs>(FETCH_BOARD_COMMENTS);
-
- 
+  const [createBoardComment] = useMutation<Pick<IMutation, "createBoardComment">, IMutationCreateBoardCommentArgs>(CREATE_BOARD_COMMENT);
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
-    if(event.target.value !== ""){
-      
-    }
-
   };
 
+  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
+
+  const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setContents(event.target.value);
+  };
 
   const onClickWrite = async () => {
     try {
@@ -47,7 +47,7 @@ export default function BoardWrite(props: IBoardWriteProps){
         },
         refetchQueries: [   //// 다시 보기
           {
-            query: FETCH_BOARD_COMMENTS,
+            query: CREATE_BOARD_COMMENT,
             variables: { boardId: router.query.boardId },
           },
         ],
@@ -64,14 +64,10 @@ export default function BoardWrite(props: IBoardWriteProps){
     <BoardCommentWriteUI
 
         onChangeWriter={onChangeWriter}
-      //  onChangePassword={onChangePassword}
-
-
-        onClickWrite={onClickWrite}
-        //onClickUpdate={onClickUpdate}
+        onChangePassword={onChangePassword}
+        onChangeContents={onChangeContents} 
         
-       // isActive={isActive}
-        //isEdit={props.isEdit}
-       // data={props.data}
+        onClickWrite={onClickWrite}
+        contents={contents}
     />)
   };
