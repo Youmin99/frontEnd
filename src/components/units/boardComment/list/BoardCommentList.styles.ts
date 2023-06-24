@@ -1,77 +1,67 @@
 import styled from "@emotion/styled";
+import { Rate, Modal } from "antd";
 
-export const Wrapper = styled.div`
+export const ItemWrapper = styled.div`
   width: 1200px;
-  margin: 100px;
+  margin: 0px 100px;
+  padding-top: 20px;
+  height: 128px;
+  border-bottom: 1px solid lightgray;
 `;
 
-export const TableTop = styled.div`
-  border-top: 2px solid gray;
-  margin-top: 20px;
-`;
-
-export const TableBottom = styled.div`
-  border-bottom: 2px solid gray;
-`;
-
-export const Row = styled.div`
+export const FlexWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  height: 52px;
-  line-height: 52px;
-  border-bottom: 1px solid gray;
-
-  :hover {
-    color: blue;
-  }
 `;
 
-export const ColumnHeaderBasic = styled.div`
-  width: 10%;
-  text-align: center;
+export const Avatar = styled.img`
+  width: 48px;
+  height: 48px;
 `;
 
-export const ColumnHeaderTitle = styled.div`
-  width: 70%;
-  text-align: center;
+export const MainWrapper = styled.div`
+  width: 100%;
+  padding-left: 10px;
 `;
-
-export const ColumnBasic = styled.div`
-  width: 10%;
-  text-align: center;
-`;
-
-export const ColumnTitle = styled.div`
-  width: 70%;
-  text-align: center;
-  cursor: pointer;
-
-  :hover {
-    color: blue;
-  }
-`;
-
-export const Footer = styled.div`
+export const WriterWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  padding-top: 50px;
-`;
-
-export const PencilIcon = styled.img``;
-
-export const Button = styled.button`
-  width: 171px;
-  height: 52px;
-  background-color: white;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
   align-items: center;
-  cursor: pointer;
+`;
+export const Writer = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+`;
+export const Contents = styled.div``;
 
-  :hover {
-    background-color: #f5f2fc;
-  }
+export const OptionWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+export const UpdateIcon = styled.img`
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+`;
+export const DeleteIcon = styled.img`
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+`;
+
+export const DateString = styled.div`
+  color: lightgray;
+  padding-top: 15px;
+  padding-left: 60px;
+`;
+
+export const Star = styled(Rate)`
+  padding-left: 20px;
+`;
+
+export const PasswordModal = styled(Modal)``;
+
+export const PasswordInput = styled.input`
+  width: 100%;
+  margin-top: 10px;
 `;

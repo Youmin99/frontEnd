@@ -1,13 +1,19 @@
 import { gql } from "@apollo/client";
 
-export const FETCH_BOARDS = gql`
-  query fetchBoards {
-    fetchBoards {
+export const FETCH_BOARD_COMMENTS = gql`
+  query fetchBoardComments($boardId: ID!) {
+    fetchBoardComments(boardId: $boardId) {
       _id
       writer
-      title
+      contents
       createdAt
+      rating
     }
   }
 `;
 
+export const DELETE_BOARD_COMMENT = gql`
+  mutation deleteBoardComment($password: String, $boardCommentId: ID!) {
+    deleteBoardComment(password: $password, boardCommentId: $boardCommentId)
+  }
+`;

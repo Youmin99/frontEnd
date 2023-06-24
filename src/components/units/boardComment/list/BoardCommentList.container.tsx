@@ -1,28 +1,82 @@
-import BoardListUI from "./BoardCommentList.presenter";
-import { useQuery } from "@apollo/client";
-import { FETCH_BOARDS } from "./BoardCommentList.queries";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { IQuery, IQueryFetchBoardsArgs } from "../../../../commons/types/generated/types";
-import { MouseEvent } from "react";
+import { useState } from "react";
+import type { ChangeEvent, MouseEvent } from "react";
+import type {
+  IMutation,
+  IMutationDeleteBoardCommentArgs,
+  IQuery,
+  IQueryFetchBoardCommentsArgs,
+} from "../../../../commons/types/generated/types";
+import BoardCommentListUI from "./BoardCommentList.presenter";
+import {
+  DELETE_BOARD_COMMENT,
+  FETCH_BOARD_COMMENTS,
+} from "./BoardCommentList.queries";
 
-export default function BoardList() {
+export default function BoardCommentList(): JSX.Element {
   const router = useRouter();
-  const { data } = useQuery<Pick<IQuery, "fetchBoards">, IQueryFetchBoardsArgs>(FETCH_BOARDS);
+  if (typeof router.query.boardId !== "string") return <></>;
 
-  const onClickMoveToBoardNew = () => {
-    router.push("/boards/new");
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+  const [boardCommentId, setBoardCommentId] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [deleteBoardComment] = useMutation<
+    Pick<IMutation, "deleteBoardComment">,
+    IMutationDeleteBoardCommentArgs
+  >(DELETE_BOARD_COMMENT);
+
+  const { data } = useQuery<
+    Pick<IQuery, "fetchBoardComments">,
+    IQueryFetchBoardCommentsArgs
+  >(FETCH_BOARD_COMMENTS, {
+    variables: { boardId: router.query.boardId },
+  });
+
+  const onClickDelete = async (
+    event: MouseEvent<HTMLButtonElement>
+  ): Promise<void> => {
+    // const password = prompt("비밀번호를 입력하세요.");
+    try {
+      await deleteBoardComment({
+        variables: {
+          password,
+          boardCommentId,
+        },
+        refetchQueries: [
+          {
+            query: FETCH_BOARD_COMMENTS,
+            variables: { boardId: router.query.boardId },
+          },
+        ],
+      });
+      setIsOpenDeleteModal(false);
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+    }
   };
 
-  const onClickMoveToBoardDetail = (event: MouseEvent<HTMLDivElement>) => {
-    if(event.target instanceof HTMLDivElement)
-      router.push(`/boards/${event.target.id}`);
+  const onClickOpenDeleteModal = (
+    event: MouseEvent<HTMLImageElement>
+  ): void => {
+    setBoardCommentId(event.currentTarget.id);
+    setIsOpenDeleteModal(true);
+  };
+
+  const onChangeDeletePassword = (
+    event: ChangeEvent<HTMLInputElement>
+  ): void => {
+    setPassword(event.target.value);
   };
 
   return (
-    <BoardListUI
+    <BoardCommentListUI
       data={data}
-      onClickMoveToBoardNew={onClickMoveToBoardNew}
-      onClickMoveToBoardDetail={onClickMoveToBoardDetail}
+      onClickDelete={onClickDelete}
+      isOpenDeleteModal={isOpenDeleteModal}
+      onClickOpenDeleteModal={onClickOpenDeleteModal}
+      onChangeDeletePassword={onChangeDeletePassword}
     />
   );
 }
