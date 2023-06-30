@@ -17,8 +17,8 @@ export default function Layout(props: ILayoutProps): JSX.Element {
   return (
     <>
       <LayoutHeader />
-      <LayoutBanner />
       <LayoutNavigation />
+      <LayoutBanner />
       <Body>{props.children}</Body>
     </>
   );
