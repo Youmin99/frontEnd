@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
-import LayoutHeaderUI from "./LayoutHeader.presenter";
+import LayoutHeaderUI from "./LayoutFooter.presenter";
 
-export default function LayoutHeader(): JSX.Element {
+export default function LayoutFooter(): JSX.Element {
   const router = useRouter();
 
   const onClickLogo = (): void => {

@@ -1,4 +1,5 @@
 import LayoutBanner from "./banner/LayoutBanner.container";
+import LayoutFooter from "./footer/LayoutFooter.container";
 import LayoutHeader from "./header/LayoutHeader.container";
 import LayoutNavigation from "./navigation/LayoutNavigation.container";
 import styled from "@emotion/styled";
@@ -20,6 +21,7 @@ export default function Layout(props: ILayoutProps): JSX.Element {
       <LayoutNavigation />
       <LayoutBanner />
       <Body>{props.children}</Body>
+      <LayoutFooter />
     </>
   );
 }
