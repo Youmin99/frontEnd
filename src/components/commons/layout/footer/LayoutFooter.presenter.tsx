@@ -3,10 +3,10 @@ import {
   InnerLogo,
   InnerWrapper,
   Wrapper,
-} from "./LayoutHeader.styles";
-import type { ILayoutHeaderProps } from "./LayoutHeader.types";
+} from "./LayoutFooter.styles";
+import type { ILayoutHeaderProps } from "./LayoutFooter.types";
 
-export default function LayoutHeaderUI(props: ILayoutHeaderProps): JSX.Element {
+export default function LayoutFooterUI(props: ILayoutHeaderProps): JSX.Element {
   return (
     <Wrapper>
       <InnerWrapper>

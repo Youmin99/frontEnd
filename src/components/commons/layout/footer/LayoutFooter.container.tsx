@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import LayoutHeaderUI from "./LayoutFooter.presenter";
+import LayoutFooterUI from "./LayoutFooter.presenter";
 
 export default function LayoutFooter(): JSX.Element {
   const router = useRouter();
@@ -13,7 +13,7 @@ export default function LayoutFooter(): JSX.Element {
   };
 
   return (
-    <LayoutHeaderUI
+    <LayoutFooterUI
       onClickLogo={onClickLogo}
       onClickMoveToLogin={onClickMoveToLogin}
     />

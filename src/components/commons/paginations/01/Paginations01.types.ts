@@ -1,6 +1,6 @@
-import { ApolloQueryResult } from "@apollo/client";
-import { MouseEvent } from "react";
-import {
+import type { ApolloQueryResult } from "@apollo/client";
+import type { MouseEvent } from "react";
+import type {
   IQuery,
   IQueryFetchBoardsArgs,
 } from "../../../../commons/types/generated/types";

@@ -5,7 +5,6 @@ import LayoutNavigation from "./navigation/LayoutNavigation.container";
 import styled from "@emotion/styled";
 
 const Body = styled.div`
-  height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,7 +17,7 @@ export default function Layout(props: ILayoutProps): JSX.Element {
   return (
     <>
       <LayoutHeader />
-      <LayoutNavigation />
+      <LayoutNavigation isfront={true} />
       <LayoutBanner />
       <Body>{props.children}</Body>
       <LayoutFooter />
