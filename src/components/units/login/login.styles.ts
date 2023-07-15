@@ -1,130 +1,145 @@
-import styled from '@emotion/styled';
-import Link from 'next/link';
+import { CloseOutlined } from "@ant-design/icons";
+import styled from "@emotion/styled";
+import Link from "next/link";
 
 export const Wrapper = styled.div`
-	width: 100vw;
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 10;
 `;
 
 export const ModalWrapper = styled.div`
-	position: absolute;
-	display: flex;
-	justify-content: center;
-	width: 100vw;
-	height: 100vh;
-	background: black;
-	opacity: 0.5;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+
+  background-color: rgba(76, 76, 76, 0.7);
+  opacity: 1;
+  z-index: 2;
 `;
 
-export const Modal  = styled.div`
-	position: absolute;
-	background-color: white;
-
-	justify-content: center;
-	
-	top: 100px;
-	width: 400px;
-	height: 500px;
-	border: 1px solid black;
-	border-radius: 20px;
-	opacity: 1;
+export const TitleWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
-export const Title  = styled.h1`
-    height: 100px;
-    padding: 20px 0px 0px 20px;
+export const Close = styled(CloseOutlined)`
+  margin: 33px;
 `;
 
-export const submit  = styled.button`
-    height: 40px;
-	width: 300px;
-	background-color: #ff7f00;
-	border-radius: 30px;
-	border:none;
+export const Modal = styled.div`
+  position: absolute;
+  background-color: white;
+  box-shadow: 5px 10px 10px 1px rgba(0, 0, 0, 0.3);
+  justify-content: center;
+  top: 100px;
+  width: 400px;
+  height: 400px;
+  border: 1px solid black;
+  border-radius: 20px;
+`;
+
+export const Title = styled.h1`
+  height: 100px;
+  padding: 20px 0px 0px 20px;
+`;
+
+export const submit = styled.button`
+  height: 40px;
+  width: 300px;
+  background-color: #ff7f00;
+  border-radius: 30px;
+  border: none;
+
+  &:hover {
+    color: white;
+  }
 `;
 
 export const buttonWrapper = styled.div`
-  padding:10px;
-  display:flex;
+  padding: 10px;
+  display: flex;
 `;
 
-export const createAccount  = styled.span`
-    height: 40px;
-	width: 300px;
-	background-color: #ff7f00;
-	border-radius: 30px;
-	border:none;
+export const createAccount = styled.span`
+  height: 40px;
+  width: 300px;
+  background-color: #ff7f00;
+  border-radius: 30px;
+  border: none;
 `;
 
-export const linkStyle = styled(Link)`
-  font-size: 50px;
-  color: black;
-  cursor: pointer;
-`;
+export const linkStyle = styled(Link)``;
 
+export const e = styled.span`
+  border: none;
+  &:hover {
+    color: orange;
+  }
+  text-decoration: none;
+`;
 
 export const Container = styled.div`
   display: flex;
   justify-content: center;
   padding: 100px;
 `;
+
 export const Wapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-`;
-export const LogoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 220px;
-  padding-bottom: 160px;
 `;
 
-export const LogoTitle = styled.div`
-  font-size: 60px;
-  font-weight: bold;
-  color: #fff;
-  padding-top: 30px;
-`;
 export const InputWrapper = styled.div`
   width: 540px;
 `;
-export const EmailInputWrapper = styled.div`
-  border-bottom: 1px solid #fff;
-  padding-bottom: 20px;
-  margin-bottom: 10px;
-`;
+export const EmailInputWrapper = styled.div``;
+
 export const EmailInput = styled.input`
-height: 40px;
-width: 300px;
+  padding: 20px;
+  height: 40px;
+  width: 300px;
   font-size: 16px;
-  background-color: #bebebe;
+  background-color: #dcdcdc;
   border: none;
-  background: none;
   outline: none;
   border-radius: 30px;
+
+  &:hover {
+    color: orange;
+  }
 `;
+
 export const PasswordInputWrapper = styled.div`
-  border-bottom: 1px solid #fff;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   margin-bottom: 10px;
 `;
 export const PasswordInput = styled.input`
+  padding: 20px;
   height: 40px;
   width: 300px;
-  margin-top: 40px;
+  margin-top: 25px;
   font-size: 16px;
-  background: #bebebe;
-  background-color:red;
+  background-color: #dcdcdc;
   border: none;
-  background: none;
+
   outline: none;
   border-radius: 30px;
+  &:hover {
+    color: orange;
+  }
 `;
 export const EmailError = styled.div`
   padding-top: 5px;
@@ -136,29 +151,16 @@ export const PasswordError = styled.div`
   font-size: 10px;
   color: #ff1b6d;
 `;
-export const LoginButton = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 76px;
-  border-radius: 38px;
-  padding: 25px 0;
-  background-color: rgba(255, 27, 109, 0.6);
-  margin: 20px 0 45px 0;
-  cursor: pointer;
-`;
 
 export const EtcButton = styled.div`
+  margin-top: 20px;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
 `;
+
 export const EtcItem = styled.div`
   font-size: 20px;
   color: black;
   cursor: pointer;
 `;
-
-
-

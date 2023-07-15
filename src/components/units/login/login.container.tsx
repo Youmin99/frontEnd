@@ -1,9 +1,9 @@
-import type { ChangeEvent } from "react";
 import { useState } from "react";
+import type { ChangeEvent } from "react";
 import * as S from "./login.styles";
 
 export default function Login(): JSX.Element {
-  const [isTrue, setIsTrue] = useState(false);
+  const [isTrue, setIsTrue] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -39,12 +39,14 @@ export default function Login(): JSX.Element {
   return (
     <>
       <S.Wrapper>
-        {!isTrue && <button onClick={handleModal}>나와라 모달</button>}
         {isTrue && (
           <S.ModalWrapper>
             <S.Modal>
-              <S.Title>login</S.Title>
-
+              <S.TitleWrapper>
+                <S.Title>login</S.Title>
+                <S.Close onClick={handleModal}></S.Close>
+                <button onClick={handleModal}>x</button>
+              </S.TitleWrapper>
               <S.Wapper>
                 <S.EmailInputWrapper>
                   <S.EmailInput
@@ -67,11 +69,17 @@ export default function Login(): JSX.Element {
                 </S.buttonWrapper>
               </S.Wapper>
               <S.EtcButton>
-                <S.linkStyle href="/about">find email</S.linkStyle>
+                <S.linkStyle href="/d">
+                  <S.e>find email</S.e>
+                </S.linkStyle>
                 <S.EtcItem>|</S.EtcItem>
-                <S.linkStyle href="/about">find password</S.linkStyle>
+                <S.linkStyle href="/about">
+                  <S.e>find password </S.e>
+                </S.linkStyle>
                 <S.EtcItem>|</S.EtcItem>
-                <S.linkStyle href="/about">create acount</S.linkStyle>
+                <S.linkStyle href="/time">
+                  <S.e>create acount</S.e>
+                </S.linkStyle>
               </S.EtcButton>
             </S.Modal>
           </S.ModalWrapper>

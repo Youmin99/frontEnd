@@ -1,3 +1,4 @@
+import Login from "../../../units/login/login.container";
 import {
   InnerButton,
   InnerLogo,
@@ -16,6 +17,7 @@ export default function LayoutHeaderUI(props: ILayoutHeaderProps): JSX.Element {
           <InnerButton>회원가입</InnerButton>
         </div>
       </InnerWrapper>
+      {props.show && <Login />}
     </Wrapper>
   );
 }
