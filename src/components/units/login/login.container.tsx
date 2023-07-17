@@ -1,9 +1,11 @@
 import { useState } from "react";
 import type { ChangeEvent } from "react";
 import * as S from "./login.styles";
+import { useRecoilState } from "recoil";
+import { trueState } from "../../../../pages/_app";
 
 export default function Login(): JSX.Element {
-  const [isTrue, setIsTrue] = useState(true);
+  const [isTrue, setIsTrue] = useRecoilState(trueState);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -26,6 +28,7 @@ export default function Login(): JSX.Element {
       setPasswordError("8~16자의 영문,숫자,특수 문자만 사용 가능합니다.");
     }
   };
+
   const onClickLogin = (): void => {
     if (emailError === "" && passwordError === "") {
       alert("환영합니다");
@@ -45,7 +48,6 @@ export default function Login(): JSX.Element {
               <S.TitleWrapper>
                 <S.Title>login</S.Title>
                 <S.Close onClick={handleModal}></S.Close>
-                <button onClick={handleModal}>x</button>
               </S.TitleWrapper>
               <S.Wapper>
                 <S.EmailInputWrapper>

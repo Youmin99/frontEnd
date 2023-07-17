@@ -1,17 +1,18 @@
 import { useRouter } from "next/router";
 import LayoutHeaderUI from "./LayoutHeader.presenter";
-import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { trueState } from "../../../../../pages/_app";
 
 export default function LayoutHeader(): JSX.Element {
   const router = useRouter();
-  const [show, setShow] = useState<boolean>(false);
+  const [isTrue, setIsTrue] = useRecoilState(trueState);
 
   const onClickLogo = (): void => {
     void router.push("/boards");
   };
 
   const onClickMoveToLogin = (): void => {
-    setShow((prev) => !prev);
+    setIsTrue((prev) => !prev);
     // void router.push("/login");
   };
 
@@ -19,7 +20,7 @@ export default function LayoutHeader(): JSX.Element {
     <LayoutHeaderUI
       onClickLogo={onClickLogo}
       onClickMoveToLogin={onClickMoveToLogin}
-      show={show}
+      show={isTrue}
     />
   );
 }
