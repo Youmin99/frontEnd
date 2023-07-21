@@ -1,4 +1,4 @@
-import type { ApolloQueryResult } from "@apollo/client";
+import type { ApolloQueryResult, OperationVariables } from "@apollo/client";
 import type { MouseEvent } from "react";
 import type {
   IQuery,
@@ -13,4 +13,9 @@ export interface IBoardListUIProps {
     variables?: Partial<IQueryFetchBoardsArgs> | undefined
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchBoards">>>;
   count?: number;
+  refetchBoardsCount: (
+    variables?: Partial<OperationVariables>
+  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchBoardsCount">>>;
+  keyword: string;
+  onChangeKeyword: (value: string) => void;
 }
