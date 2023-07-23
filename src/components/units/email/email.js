@@ -1,11 +1,11 @@
-function checkEmail(myemail) {
+const checkEmail = (myemail) => {
   if (myemail === undefined || myemail.includes("@") === false) {
     console.log("error check @");
     return false;
   } else {
     return true;
   }
-}
+};
 
 function getWelcomeTemplate({ name, age, school, createdAt }) {
   const mytemplate = `
