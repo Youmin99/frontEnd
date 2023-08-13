@@ -135,16 +135,16 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
 
   const onClickSubmit = async (): Promise<void> => {
     if (writer === "") {
-      setWriterError("작성자를 입력해주세요.");
+      setWriterError("write name.");
     }
     if (password === "") {
-      setPasswordError("비밀번호를 입력해주세요.");
+      setPasswordError("write password.");
     }
     if (title === "") {
-      setTitleError("제목을 입력해주세요.");
+      setTitleError("write title.");
     }
     if (contents === "") {
-      setContentsError("내용을 입력해주세요.");
+      setContentsError("write contents.");
     }
     if (writer !== "" && password !== "" && title !== "" && contents !== "") {
       try {
