@@ -9,19 +9,19 @@ export default function BoardCommentWriteUI(
       {props.isEdit === false && (
         <>
           <S.PencilIcon src="/images/boardComment/write/pencil.png" />
-          <span>댓글</span>
+          <span>comment</span>
         </>
       )}
       <S.InputWrapper>
         <S.Input
-          placeholder="작성자"
+          placeholder="user"
           onChange={props.onChangeWriter}
           value={props.writer !== "" ? props.writer : props.el?.writer ?? ""}
           readOnly={props.isEdit}
         />
         <S.Input
           type="password"
-          placeholder="비밀번호"
+          placeholder="password"
           onChange={props.onChangePassword}
           value={props.password}
         />
@@ -48,7 +48,7 @@ export default function BoardCommentWriteUI(
               props.isEdit === true ? props.onClickUpdate : props.onClickWrite
             }
           >
-            등록하기
+            register
           </S.Button>
         </S.BottomWrapper>
       </S.ContentsWrapper>

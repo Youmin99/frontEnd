@@ -1,15 +1,37 @@
 import { useState } from "react";
 import type { ChangeEvent } from "react";
 import { useRecoilState } from "recoil";
-import { trueState } from "../../../../pages/_app";
 import LoginPresenter from "./login.presenter";
+import { accessTokenState, trueState } from "../../commons/store";
+import { useMutation, gql } from "@apollo/client";
+import type {
+  IMutation,
+  IMutationLoginUserArgs,
+} from "../../../commons/types/generated/types";
+import { Modal } from "antd";
+import { useRouter } from "next/router";
 
-export default function Login(): JSX.Element {
+export default function Login(prop: { page: boolean }): JSX.Element {
   const [isTrue, setIsTrue] = useRecoilState(trueState);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const router = useRouter();
+  const [, setaccessToken] = useRecoilState(accessTokenState);
+
+  const LOGIN_USER = gql`
+    mutation loginUser($email: String) {
+      loginUser(email: $email, password: $password) {
+        accessToken
+      }
+    }
+  `;
+
+  const [loginUser] = useMutation<
+    Pick<IMutation, "loginUser">,
+    IMutationLoginUserArgs
+  >(LOGIN_USER);
 
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>): void => {
     setEmail(event.target.value);
@@ -29,9 +51,27 @@ export default function Login(): JSX.Element {
     }
   };
 
-  const onClickLogin = (): void => {
+  const onClickLogin = async (): Promise<void> => {
     if (emailError === "" && passwordError === "") {
       alert("wellcome");
+    }
+
+    try {
+      const result = await loginUser({
+        variables: {
+          email,
+          password,
+        },
+      });
+      const accesstoken = result.data?.loginUser.accessToken;
+
+      if (typeof accesstoken === "string") {
+        setaccessToken(accesstoken);
+        void router.push("/loginsuccess");
+        localStorage.setItem("accessToken", accesstoken);
+      }
+    } catch (error) {
+      if (error instanceof Error) Modal.error({ content: error.message });
     }
   };
 
@@ -47,7 +87,7 @@ export default function Login(): JSX.Element {
       handleModal={handleModal}
       emailError={emailError}
       passwordError={passwordError}
-      isTrue={isTrue}
+      isTrue={isTrue ?? prop.page}
     />
   );
 }
