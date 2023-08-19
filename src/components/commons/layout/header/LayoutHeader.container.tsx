@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import LayoutHeaderUI from "./LayoutHeader.presenter";
 import { useRecoilState } from "recoil";
-import { trueState } from "../../../../../pages/_app";
+import { trueState } from "../../store";
 
 export default function LayoutHeader(): JSX.Element {
   const router = useRouter();

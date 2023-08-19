@@ -10,7 +10,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
         </S.AddressModal>
       )}
       <S.Wrapper>
-        <S.Title>{props.isEdit ? "edit" : "post"}</S.Title>
+        <S.Title>{props.isEdit ? "edit" : "posts"}</S.Title>
         <S.WriterWrapper>
           <S.InputWrapper>
             <S.Label>user</S.Label>

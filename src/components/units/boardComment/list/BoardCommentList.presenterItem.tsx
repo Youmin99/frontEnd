@@ -71,7 +71,7 @@ export default function BoardCommentListUIItem(
     <>
       {isOpenDeleteModal && (
         <S.PasswordModal visible={true} onOk={onClickDelete}>
-          <div>비밀번호 입력: </div>
+          <div>password: </div>
           <S.PasswordInput type="password" onChange={onChangeDeletePassword} />
         </S.PasswordModal>
       )}

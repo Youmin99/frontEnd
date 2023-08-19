@@ -2,11 +2,19 @@ import styled from "@emotion/styled";
 import { Rate, Modal } from "antd";
 
 export const ItemWrapper = styled.div`
-  width: 1200px;
-  margin: 0px 100px;
+  width: 1000px;
+  margin: 10px;
   padding-top: 20px;
-  height: 128px;
-  border-bottom: 1px solid lightgray;
+  height: 110px;
+  border-radius: 30px;
+  border: 1px solid lightgray;
+
+  @media screen and (max-width: 1024px) {
+    width: 700px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 400px;
+  }
 `;
 
 export const FlexWrapper = styled.div`

@@ -9,7 +9,7 @@ export default function OpenapiListUI(props: IOpenapiListUIProps): JSX.Element {
         {props.imgUrls.map((el, index) => (
           <>
             <DogImg key={el} src={el} />
-            {(index + 1) % 3 === 0 && <br />}
+            {(index + 1) % 3 === 0 && <div />}
           </>
         ))}
       </div>

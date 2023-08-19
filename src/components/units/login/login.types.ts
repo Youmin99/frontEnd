@@ -7,5 +7,5 @@ export interface IloginProps {
   handleModal: () => void;
   emailError: string;
   passwordError: string;
-  isTrue?: boolean;
+  isTrue?: boolean | undefined;
 }

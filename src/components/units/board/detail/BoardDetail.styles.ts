@@ -3,8 +3,15 @@ import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 import ReactPlayer from "react-player";
 
 export const Wrapper = styled.div`
-  width: 1200px;
-  margin: 100px;
+  width: 1000px;
+  margin: 100px 100px 0px 100px;
+
+  @media screen and (max-width: 1024px) {
+    width: 700px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 400px;
+  }
 `;
 
 export const CardWrapper = styled.div`
@@ -18,6 +25,20 @@ export const CardWrapper = styled.div`
   align-items: center;
   border: none;
   box-shadow: 0px 0px 10px gray;
+  border-radius: 30px;
+
+  @media screen and (max-width: 1024px) {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+  @media screen and (max-width: 767px) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 `;
 
 export const Header = styled.div`
@@ -52,6 +73,12 @@ export const CreatedAt = styled.div``;
 export const Body = styled.div`
   width: 100%;
   min-height: 800px;
+  @media screen and (max-width: 1024px) {
+    min-height: 600px;
+  }
+  @media screen and (max-width: 767px) {
+    min-height: 300px;
+  }
 `;
 
 export const Title = styled.h1`
@@ -67,7 +94,7 @@ export const BottomWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding-top: 80px;
+  padding-top: 40px;
 `;
 
 export const Button = styled.button`
@@ -77,6 +104,7 @@ export const Button = styled.button`
   border: 1px solid gray;
   margin: 0px 12px;
   cursor: pointer;
+  border-radius: 30px;
 
   :hover {
     background-color: gold;

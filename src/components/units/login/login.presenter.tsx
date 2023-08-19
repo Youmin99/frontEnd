@@ -1,14 +1,12 @@
 import * as S from "./login.styles";
 import type { IloginProps } from "./login.types";
-import { useRecoilState } from "recoil";
-import { trueState } from "../../../../pages/_app";
 
 export default function LoginPresenter(props: IloginProps): JSX.Element {
-  const [isTrue] = useRecoilState(trueState);
+  if (typeof props.isTrue !== "boolean") return <></>;
   return (
     <>
       <S.Wrapper>
-        {isTrue && (
+        {props.isTrue && (
           <S.ModalWrapper>
             <S.Modal>
               <S.TitleWrapper>

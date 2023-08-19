@@ -42,9 +42,9 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
         </S.Body>
       </S.CardWrapper>
       <S.BottomWrapper>
-        <S.Button>목록으로</S.Button>
-        <S.Button onClick={props.onClickMoveToBoardEdit}>수정하기</S.Button>
-        <S.Button>삭제하기</S.Button>
+        <S.Button>list</S.Button>
+        <S.Button onClick={props.onClickMoveToBoardEdit}>edit</S.Button>
+        <S.Button>delete</S.Button>
       </S.BottomWrapper>
     </S.Wrapper>
   );

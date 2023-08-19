@@ -1,8 +1,20 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 1200px;
-  margin: 100px;
+  width: 1100px;
+  padding: 100px;
+  margin-bottom: 100px;
+  box-shadow: 0px 0px 10px gray;
+  border-radius: 30px;
+
+  @media screen and (max-width: 1024px) {
+    width: 800px;
+    padding: 80px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 600px;
+    padding: 50px;
+  }
 `;
 
 export const TableTop = styled.div`
@@ -22,29 +34,41 @@ export const Row = styled.div`
   border-bottom: 1px solid gray;
 
   :hover {
-    color: blue;
+    color: orange;
   }
 `;
 
 export const ColumnHeaderBasic = styled.div`
-  width: 10%;
+  width: 15%;
   text-align: center;
+  @media screen and (max-width: 767px) {
+    width: 25%px;
+  }
 `;
 
 export const ColumnHeaderTitle = styled.div`
-  width: 70%;
+  width: 55%;
   text-align: center;
+  @media screen and (max-width: 767px) {
+    width: 25%px;
+  }
 `;
 
 export const ColumnBasic = styled.div`
-  width: 10%;
+  width: 15%;
   text-align: center;
+  @media screen and (max-width: 767px) {
+    width: 25%px;
+  }
 `;
 
 export const ColumnTitle = styled.div`
-  width: 70%;
+  width: 55%;
   text-align: center;
   cursor: pointer;
+  @media screen and (max-width: 767px) {
+    width: 25%px;
+  }
 
   :hover {
     color: blue;

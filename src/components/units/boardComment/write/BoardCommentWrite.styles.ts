@@ -2,8 +2,16 @@ import styled from "@emotion/styled";
 import { Rate } from "antd";
 
 export const Wrapper = styled.div`
-  width: 1200px;
-  margin: 0px 100px;
+  width: 1000px;
+  margin-bottom: 50px;
+  border-radius: 30px;
+
+  @media screen and (max-width: 1024px) {
+    width: 700px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 400px;
+  }
 `;
 
 export const PencilIcon = styled.img``;
@@ -14,10 +22,12 @@ export const InputWrapper = styled.div`
   align-items: center;
   margin-top: 40px;
   margin-bottom: 20px;
+  border-radius: 30px;
 `;
 
 export const ContentsWrapper = styled.div`
   border: 1px solid lightgray;
+  border-radius: 30px;
 `;
 
 export const Input = styled.input`
@@ -26,6 +36,7 @@ export const Input = styled.input`
   padding-left: 20px;
   border: 1px solid lightgray;
   margin-right: 20px;
+  border-radius: 30px;
 `;
 
 export const Contents = styled.textarea`
@@ -34,12 +45,14 @@ export const Contents = styled.textarea`
   padding: 20px;
   border: none;
   border-bottom: 1px solid lightgray;
+  border-radius: 30px;
 `;
 
 export const BottomWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  border-radius: 30px;
 `;
 
 export const ContentsLength = styled.div`
@@ -56,6 +69,7 @@ export const Button = styled.button`
   background-color: black;
   color: white;
   cursor: pointer;
+  border-radius: 30px;
 `;
 
 export const Star = styled(Rate)``;

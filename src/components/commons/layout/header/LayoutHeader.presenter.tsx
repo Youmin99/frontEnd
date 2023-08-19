@@ -11,10 +11,10 @@ export default function LayoutHeaderUI(props: ILayoutHeaderProps): JSX.Element {
   return (
     <Wrapper>
       <InnerWrapper>
-        <InnerLogo onClick={props.onClickLogo}>💎 LIVE</InnerLogo>
+        <InnerLogo onClick={props.onClickLogo}>posts</InnerLogo>
         <div>
-          <InnerButton onClick={props.onClickMoveToLogin}>로그인</InnerButton>
-          <InnerButton>회원가입</InnerButton>
+          <InnerButton onClick={props.onClickMoveToLogin}>log in</InnerButton>
+          <InnerButton>create account</InnerButton>
         </div>
       </InnerWrapper>
       {props.show && <Login />}
