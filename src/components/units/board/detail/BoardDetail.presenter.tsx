@@ -2,8 +2,12 @@ import * as S from "./BoardDetail.styles";
 import { getDate } from "../../../../../src/commons/libraries/utils";
 import type { IBoardDetailUIProps } from "./BoardDetail.types";
 import { Tooltip } from "antd";
+import { useMoveToPage } from "../../../commons/hooks/customs/useMoveToPage";
+import { useRouter } from "next/router";
 
 export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
+  const { onClickMoveToPage } = useMoveToPage();
+  const router = useRouter();
   return (
     <S.Wrapper>
       <S.CardWrapper>
@@ -43,7 +47,13 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
       </S.CardWrapper>
       <S.BottomWrapper>
         <S.Button>list</S.Button>
-        <S.Button onClick={props.onClickMoveToBoardEdit}>edit</S.Button>
+        {typeof router.query.boardId === "string" && (
+          <S.Button
+            onClick={onClickMoveToPage(`/boards/${router.query.boardId}/edit`)}
+          >
+            edit
+          </S.Button>
+        )}
         <S.Button>delete</S.Button>
       </S.BottomWrapper>
     </S.Wrapper>

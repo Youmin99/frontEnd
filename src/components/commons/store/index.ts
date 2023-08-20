@@ -1,11 +1,16 @@
 import { atom } from "recoil";
 
 export const trueState = atom({
-  key: "trueState", // state의 이름
-  default: false, // 초기값
+  key: "trueState",
+  default: false,
 });
 
 export const accessTokenState = atom({
-  key: "accessTokenState", // state의 이름
-  default: "", // 초기값
+  key: "accessTokenState",
+  default: "",
+});
+
+export const visitedPageState = atom({
+  key: "visitedPage",
+  default: "",
 });

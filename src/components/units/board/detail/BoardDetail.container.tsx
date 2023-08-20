@@ -16,19 +16,5 @@ export default function BoardDetail(): JSX.Element {
     { variables: { boardId: router.query.boardId } }
   );
 
-  const onClickMoveToBoardEdit = (): void => {
-    if (typeof router.query.boardId !== "string") {
-      alert("시스템에 문제가 있습니다.");
-      return;
-    }
-
-    void router.push(`/boards/${router.query.boardId}/edit`);
-  };
-
-  return (
-    <BoardDetailUI
-      data={data}
-      onClickMoveToBoardEdit={onClickMoveToBoardEdit}
-    />
-  );
+  return <BoardDetailUI data={data} />;
 }
