@@ -11,6 +11,6 @@ export const accessTokenState = atom({
 });
 
 export const visitedPageState = atom({
-  key: "visitedPage",
+  key: "visitedPageState",
   default: "",
 });

@@ -1,19 +1,12 @@
-import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import type { ChangeEvent, MouseEvent } from "react";
-import type {
-  IMutation,
-  IMutationDeleteBoardCommentArgs,
-} from "../../../../commons/types/generated/types";
-import {
-  DELETE_BOARD_COMMENT,
-  FETCH_BOARD_COMMENTS,
-} from "./BoardCommentList.queries";
 import * as S from "./BoardCommentList.styles";
 import type { IBoardCommentListUIItemProps } from "./BoardCommentList.types";
 import { useRouter } from "next/router";
 import { getDate } from "../../../../commons/libraries/utils";
 import BoardCommentWrite from "../write/BoardCommentWrite.container";
+import { useMutationDeleteBoardComment } from "../../../commons/hooks/mutations/useMutationDeleteBoardComment";
+import { FETCH_BOARD_COMMENTS } from "../../../commons/hooks/queries/useQueryFetchBoardComments";
 
 export default function BoardCommentListUIItem(
   props: IBoardCommentListUIItemProps
@@ -23,10 +16,7 @@ export default function BoardCommentListUIItem(
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [password, setPassword] = useState("");
 
-  const [deleteBoardComment] = useMutation<
-    Pick<IMutation, "deleteBoardComment">,
-    IMutationDeleteBoardCommentArgs
-  >(DELETE_BOARD_COMMENT);
+  const [deleteBoardComment] = useMutationDeleteBoardComment();
 
   const onClickUpdate = (): void => {
     setIsEdit(true);

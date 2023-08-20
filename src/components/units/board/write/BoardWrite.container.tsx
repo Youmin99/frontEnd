@@ -1,17 +1,12 @@
 import { useState } from "react";
 import type { ChangeEvent } from "react";
-import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import BoardWriteUI from "./BoardWrite.presenter";
-import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
-import type {
-  IMutation,
-  IMutationCreateBoardArgs,
-  IMutationUpdateBoardArgs,
-  IUpdateBoardInput,
-} from "../../../../commons/types/generated/types";
+import type { IUpdateBoardInput } from "../../../../commons/types/generated/types";
 import type { IBoardWriteProps } from "./BoardWrite.types";
 import type { Address } from "react-daum-postcode";
+import { useMutationCreateBoard } from "../../../commons/hooks/mutations/useMutationCreateBoard";
+import { useMutationUpdateBoard } from "../../../commons/hooks/mutations/useMutationUpdateBoard";
 
 export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   const router = useRouter();
@@ -32,14 +27,8 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   const [titleError, setTitleError] = useState("");
   const [contentsError, setContentsError] = useState("");
 
-  const [createBoard] = useMutation<
-    Pick<IMutation, "createBoard">,
-    IMutationCreateBoardArgs
-  >(CREATE_BOARD);
-  const [updateBoard] = useMutation<
-    Pick<IMutation, "updateBoard">,
-    IMutationUpdateBoardArgs
-  >(UPDATE_BOARD);
+  const [createBoard] = useMutationCreateBoard();
+  const [updateBoard] = useMutationUpdateBoard();
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>): void => {
     setWriter(event.target.value);
