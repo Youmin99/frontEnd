@@ -1,154 +1,62 @@
 import { useState } from "react";
-import type { ChangeEvent } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import BoardWriteUI from "./BoardWrite.presenter";
-import type { IUpdateBoardInput } from "../../../../commons/types/generated/types";
+// import type { IUpdateBoardInput } from "../../../../commons/types/generated/types";
 import type { IBoardWriteProps } from "./BoardWrite.types";
 import type { Address } from "react-daum-postcode";
 import { useMutationCreateBoard } from "../../../commons/hooks/mutations/useMutationCreateBoard";
-import { useMutationUpdateBoard } from "../../../commons/hooks/mutations/useMutationUpdateBoard";
+// import { useMutationUpdateBoard } from "../../../commons/hooks/mutations/useMutationUpdateBoard";
+import { useForm } from "react-hook-form";
+import { schema } from "../../../commons/yup";
 
 export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
-  const [writer, setWriter] = useState("");
-  const [password, setPassword] = useState("");
-  const [title, setTitle] = useState("");
-  const [contents, setContents] = useState("");
-  const [youtubeUrl, setYoutubeUrl] = useState("");
   const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
-  const [addressDetail, setAddressDetail] = useState("");
-
-  const [writerError, setWriterError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [titleError, setTitleError] = useState("");
-  const [contentsError, setContentsError] = useState("");
 
   const [createBoard] = useMutationCreateBoard();
-  const [updateBoard] = useMutationUpdateBoard();
+  // const [updateBoard] = useMutationUpdateBoard();
 
-  const onChangeWriter = (event: ChangeEvent<HTMLInputElement>): void => {
-    setWriter(event.target.value);
-    if (event.target.value !== "") {
-      setWriterError("");
-    }
+  const { register, handleSubmit, formState } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
 
+  const onClickSubmit = async (data: any): Promise<void> => {
+    console.log(data);
     if (
-      event.target.value !== "" &&
-      password !== "" &&
-      title !== "" &&
-      contents !== ""
+      data.writer !== "" &&
+      data.password !== "" &&
+      data.title !== "" &&
+      data.contents !== ""
     ) {
       setIsActive(true);
     } else {
       setIsActive(false);
     }
-  };
-
-  const onChangePassword = (event: ChangeEvent<HTMLInputElement>): void => {
-    setPassword(event.target.value);
-    if (event.target.value !== "") {
-      setPasswordError("");
-    }
 
     if (
-      writer !== "" &&
-      event.target.value !== "" &&
-      title !== "" &&
-      contents !== ""
+      data.writer !== "" &&
+      data.password !== "" &&
+      data.title !== "" &&
+      data.contents !== ""
     ) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  };
-
-  const onChangeTitle = (event: ChangeEvent<HTMLInputElement>): void => {
-    setTitle(event.target.value);
-    if (event.target.value !== "") {
-      setTitleError("");
-    }
-
-    if (
-      writer !== "" &&
-      password !== "" &&
-      event.target.value !== "" &&
-      contents !== ""
-    ) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  };
-
-  const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>): void => {
-    setContents(event.target.value);
-    if (event.target.value !== "") {
-      setContentsError("");
-    }
-
-    if (
-      writer !== "" &&
-      password !== "" &&
-      title !== "" &&
-      event.target.value !== ""
-    ) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  };
-
-  const onChangeYoutubeUrl = (event: ChangeEvent<HTMLInputElement>): void => {
-    setYoutubeUrl(event.target.value);
-  };
-
-  const onChangeAddressDetail = (
-    event: ChangeEvent<HTMLInputElement>
-  ): void => {
-    setAddressDetail(event.target.value);
-  };
-
-  const onClickAddressSearch = (): void => {
-    setIsOpen((prev) => !prev);
-  };
-
-  const onCompleteAddressSearch = (data: Address): void => {
-    setAddress(data.address);
-    setZipcode(data.zonecode);
-    setIsOpen((prev) => !prev);
-  };
-
-  const onClickSubmit = async (): Promise<void> => {
-    if (writer === "") {
-      setWriterError("write name.");
-    }
-    if (password === "") {
-      setPasswordError("write password.");
-    }
-    if (title === "") {
-      setTitleError("write title.");
-    }
-    if (contents === "") {
-      setContentsError("write contents.");
-    }
-    if (writer !== "" && password !== "" && title !== "" && contents !== "") {
       try {
         const result = await createBoard({
           variables: {
             createBoardInput: {
-              writer,
-              password,
-              title,
-              contents,
-              youtubeUrl,
+              writer: data.writer,
+              password: data.password,
+              title: data.title,
+              contents: data.contents,
+              youtubeUrl: data.youtubeUrl,
               boardAddress: {
                 zipcode,
                 address,
-                addressDetail,
+                addressDetail: data.boardAddress.addressDetail,
               },
             },
           },
@@ -167,75 +75,73 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     }
   };
 
+  const onClickAddressSearch = (): void => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const onCompleteAddressSearch = (data: Address): void => {
+    setAddress(data.address);
+    setZipcode(data.zonecode);
+    setIsOpen((prev) => !prev);
+  };
+
   const onClickUpdate = async (): Promise<void> => {
-    if (
-      title === "" &&
-      contents === "" &&
-      youtubeUrl === "" &&
-      address === "" &&
-      addressDetail === "" &&
-      zipcode === ""
-    ) {
-      alert("수정한 내용이 없습니다.");
-      return;
-    }
-
-    if (password === "") {
-      alert("비밀번호를 입력해주세요.");
-      return;
-    }
-
-    const updateBoardInput: IUpdateBoardInput = {};
-    if (title !== "") updateBoardInput.title = title;
-    if (contents !== "") updateBoardInput.contents = contents;
-    if (youtubeUrl !== "") updateBoardInput.youtubeUrl = youtubeUrl;
-    if (zipcode !== "" || address !== "" || addressDetail !== "") {
-      updateBoardInput.boardAddress = {};
-      if (zipcode !== "") updateBoardInput.boardAddress.zipcode = zipcode;
-      if (address !== "") updateBoardInput.boardAddress.address = address;
-      if (addressDetail !== "")
-        updateBoardInput.boardAddress.addressDetail = addressDetail;
-    }
-
-    try {
-      if (typeof router.query.boardId !== "string") {
-        alert("시스템에 문제가 있습니다.");
-        return;
-      }
-      const result = await updateBoard({
-        variables: {
-          boardId: router.query.boardId,
-          password,
-          updateBoardInput,
-        },
-      });
-
-      if (result.data?.updateBoard._id === undefined) {
-        alert("요청에 문제가 있습니다.");
-        return;
-      }
-
-      void router.push(`/boards/${result.data?.updateBoard._id}`);
-    } catch (error) {
-      if (error instanceof Error) alert(error.message);
-    }
+    // if (
+    //   title === "" &&
+    //   contents === "" &&
+    //   youtubeUrl === "" &&
+    //   address === "" &&
+    //   addressDetail === "" &&
+    //   zipcode === ""
+    // ) {
+    //   alert("수정한 내용이 없습니다.");
+    //   return;
+    // }
+    // if (password === "") {
+    //   alert("비밀번호를 입력해주세요.");
+    //   return;
+    // }
+    // const updateBoardInput: IUpdateBoardInput = {};
+    // if (title !== "") updateBoardInput.title = title;
+    // if (contents !== "") updateBoardInput.contents = contents;
+    // if (youtubeUrl !== "") updateBoardInput.youtubeUrl = youtubeUrl;
+    // if (zipcode !== "" || address !== "" || addressDetail !== "") {
+    //   updateBoardInput.boardAddress = {};
+    //   if (zipcode !== "") updateBoardInput.boardAddress.zipcode = zipcode;
+    //   if (address !== "") updateBoardInput.boardAddress.address = address;
+    //   if (addressDetail !== "")
+    //     updateBoardInput.boardAddress.addressDetail = addressDetail;
+    // }
+    // try {
+    //   if (typeof router.query.boardId !== "string") {
+    //     alert("시스템에 문제가 있습니다.");
+    //     return;
+    //   }
+    //   const result = await updateBoard({
+    //     variables: {
+    //       boardId: router.query.boardId,
+    //       password,
+    //       updateBoardInput,
+    //     },
+    //   });
+    //   if (result.data?.updateBoard._id === undefined) {
+    //     alert("요청에 문제가 있습니다.");
+    //     return;
+    //   }
+    //   void router.push(`/boards/${result.data?.updateBoard._id}`);
+    // } catch (error) {
+    //   if (error instanceof Error) alert(error.message);
+    // }
   };
 
   return (
     <BoardWriteUI
-      writerError={writerError}
-      passwordError={passwordError}
-      titleError={titleError}
-      contentsError={contentsError}
-      onChangeWriter={onChangeWriter}
-      onChangePassword={onChangePassword}
-      onChangeTitle={onChangeTitle}
-      onChangeContents={onChangeContents}
-      onChangeYoutubeUrl={onChangeYoutubeUrl}
-      onChangeAddressDetail={onChangeAddressDetail}
+      register={register}
+      handleSubmit={handleSubmit}
+      onClickSubmit={onClickSubmit}
+      formState={formState}
       onClickAddressSearch={onClickAddressSearch}
       onCompleteAddressSearch={onCompleteAddressSearch}
-      onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
       isActive={isActive}
       isEdit={props.isEdit}

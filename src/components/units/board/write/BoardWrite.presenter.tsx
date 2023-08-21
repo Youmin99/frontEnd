@@ -1,3 +1,4 @@
+import { wrapAsync } from "../../../commons/hooks/customs/wrapAsync";
 import * as S from "./BoardWrite.styles";
 import type { IBoardWriteUIProps } from "./BoardWrite.types";
 
@@ -9,7 +10,13 @@ export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
           <S.AddressSearchInput onComplete={props.onCompleteAddressSearch} />
         </S.AddressModal>
       )}
-      <S.Wrapper>
+      <S.Wrapper
+        onSubmit={
+          props.isEdit
+            ? props.onClickUpdate
+            : wrapAsync(props.handleSubmit(props.onClickSubmit))
+        }
+      >
         <S.Title>{props.isEdit ? "edit" : "posts"}</S.Title>
         <S.WriterWrapper>
           <S.InputWrapper>
@@ -17,20 +24,20 @@ export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
             <S.Writer
               type="text"
               placeholder="wtie name."
-              onChange={props.onChangeWriter}
+              {...props.register("writer")}
               defaultValue={props.data?.fetchBoard.writer ?? ""}
               readOnly={Boolean(props.data?.fetchBoard.writer)}
             />
-            <S.Error>{props.writerError}</S.Error>
+            <S.Error>{props.formState.errors.writer?.message}</S.Error>
           </S.InputWrapper>
           <S.InputWrapper>
             <S.Label>password</S.Label>
             <S.Password
               type="password"
               placeholder="write password."
-              onChange={props.onChangePassword}
+              {...props.register("password")}
             />
-            <S.Error>{props.passwordError}</S.Error>
+            <S.Error>{props.formState.errors.password?.message}</S.Error>
           </S.InputWrapper>
         </S.WriterWrapper>
         <S.InputWrapper>
@@ -38,19 +45,19 @@ export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
           <S.Subject
             type="text"
             placeholder="write title."
-            onChange={props.onChangeTitle}
+            {...props.register("title")}
             defaultValue={props.data?.fetchBoard.title}
           />
-          <S.Error>{props.titleError}</S.Error>
+          <S.Error>{props.formState.errors.title?.message}</S.Error>
         </S.InputWrapper>
         <S.InputWrapper>
           <S.Label>content</S.Label>
           <S.Contents
             placeholder="write content."
-            onChange={props.onChangeContents}
+            {...props.register("contents")}
             defaultValue={props.data?.fetchBoard.contents}
           />
-          <S.Error>{props.contentsError}</S.Error>
+          <S.Error>{props.formState.errors.contents?.message}</S.Error>
         </S.InputWrapper>
         <S.InputWrapper>
           <S.Label>address</S.Label>
@@ -77,7 +84,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
             }
           />
           <S.Address
-            onChange={props.onChangeAddressDetail}
+            {...props.register("boardAddress.addressDetail")}
             defaultValue={
               props.data?.fetchBoard.boardAddress?.addressDetail ?? ""
             }
@@ -87,7 +94,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
           <S.Label>youtube</S.Label>
           <S.Youtube
             placeholder="copy link."
-            onChange={props.onChangeYoutubeUrl}
+            {...props.register("youtubeUrl")}
             defaultValue={props.data?.fetchBoard.youtubeUrl ?? ""}
           />
         </S.InputWrapper>
@@ -106,10 +113,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
             <S.RadioLabel htmlFor="image">image</S.RadioLabel>
           </S.OptionWrapper>
 
-          <S.SubmitButton
-            onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
-            isActive={props.isEdit ? true : props.isActive}
-          >
+          <S.SubmitButton isActive={props.isEdit ? true : props.isActive}>
             {props.isEdit ? "edit" : "post"}
           </S.SubmitButton>
         </S.ButtonWrapper>

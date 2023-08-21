@@ -1,5 +1,10 @@
-import type { ChangeEvent } from "react";
 import type { IQuery } from "../../../../commons/types/generated/types";
+import {
+  UseFormRegister,
+  FieldValues,
+  UseFormHandleSubmit,
+  FormState,
+} from "react-hook-form";
 
 export interface IBoardWriteProps {
   isEdit: boolean;
@@ -7,19 +12,35 @@ export interface IBoardWriteProps {
 }
 
 export interface IBoardWriteUIProps {
-  writerError: string;
-  passwordError: string;
-  titleError: string;
-  contentsError: string;
-  onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
-  onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
+  register: UseFormRegister<{
+    writer: string;
+    password: string;
+    title: string;
+    contents: string;
+    boardAddress: {
+      zipcode?: string | undefined;
+      address?: string | undefined;
+      addressDetail?: string | undefined;
+    };
+    youtubeUrl: string | undefined;
+  }>;
+
+  formState: FormState<{
+    writer: string;
+    password: string;
+    title: string;
+    contents: string;
+    boardAddress: {
+      zipcode?: string | undefined;
+      address?: string | undefined;
+      addressDetail?: string | undefined;
+    };
+    youtubeUrl: string;
+  }>;
+  handleSubmit: UseFormHandleSubmit<FieldValues, undefined>;
+  onClickSubmit: (data: any) => void;
   onClickAddressSearch: () => void;
   onCompleteAddressSearch: (data: any) => void;
-  onClickSubmit: () => void;
   onClickUpdate: () => void;
   isActive: boolean;
   isEdit: boolean;

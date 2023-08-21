@@ -3,7 +3,7 @@ import { Modal } from "antd";
 import type { ISubmitButtonProps } from "./BoardWrite.types";
 import DaumPostcode from "react-daum-postcode";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   width: 1000px;
   height: 1500px;
   border: 1px solid black;
