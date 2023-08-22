@@ -5,7 +5,7 @@ import {
 } from "../../../../commons/types/generated/types";
 
 const LOGIN_USER = gql`
-  mutation loginUser($email: String) {
+  mutation loginUser($email: String!, $password: String!) {
     loginUser(email: $email, password: $password) {
       accessToken
     }
@@ -13,10 +13,10 @@ const LOGIN_USER = gql`
 `;
 
 export const useMutationLoginUser = () => {
-  const loginUser = useMutation<
+  const mutation = useMutation<
     Pick<IMutation, "loginUser">,
     IMutationLoginUserArgs
   >(LOGIN_USER);
 
-  return loginUser;
+  return mutation;
 };

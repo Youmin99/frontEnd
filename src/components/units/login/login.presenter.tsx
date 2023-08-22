@@ -45,8 +45,10 @@ export default function LoginPresenter(props: IloginProps): JSX.Element {
                   <S.e>find password </S.e>
                 </S.linkStyle>
                 <S.EtcItem>|</S.EtcItem>
-                <S.linkStyle href="/time">
-                  <S.e>create acount</S.e>
+                <S.linkStyle href="/account">
+                  <S.e onClick={() => setIsOpen((prev) => !prev)}>
+                    create acount
+                  </S.e>
                 </S.linkStyle>
               </S.EtcButton>
             </S.Modal>

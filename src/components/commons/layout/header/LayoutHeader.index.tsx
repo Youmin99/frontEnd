@@ -19,7 +19,9 @@ export default function LayoutHeader(): JSX.Element {
           <InnerButton onClick={() => setIsOpen((prev) => !prev)}>
             log in
           </InnerButton>
-          <InnerButton>create account</InnerButton>
+          <InnerButton onClick={onClickMoveToPage(`/account`)}>
+            create account
+          </InnerButton>
         </div>
       </InnerWrapper>
       {isOpen && <Login />}
