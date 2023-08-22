@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 
-export const trueState = atom({
-  key: "trueState",
+export const openState = atom({
+  key: "openState",
   default: false,
 });
 

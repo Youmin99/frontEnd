@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { visitedPageState } from "../../store";
 interface IMoveToPage {
-  visitedPage: string;
+  visitedPage: string | unknown;
   onClickMoveToPage: (path: string) => () => void;
 }
 

@@ -8,7 +8,7 @@ import type { Address } from "react-daum-postcode";
 import { useMutationCreateBoard } from "../../../commons/hooks/mutations/useMutationCreateBoard";
 // import { useMutationUpdateBoard } from "../../../commons/hooks/mutations/useMutationUpdateBoard";
 import { useForm } from "react-hook-form";
-import { schema } from "../../../commons/yup";
+import { schema } from "../../../commons/error/BoardWrite.yup";
 
 export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   const router = useRouter();
@@ -27,53 +27,47 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
 
   const onClickSubmit = async (data: any): Promise<void> => {
     console.log(data);
-    if (
-      data.writer !== "" &&
-      data.password !== "" &&
-      data.title !== "" &&
-      data.contents !== ""
-    ) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
 
-    if (
-      data.writer !== "" &&
-      data.password !== "" &&
-      data.title !== "" &&
-      data.contents !== ""
-    ) {
-      try {
-        const result = await createBoard({
-          variables: {
-            createBoardInput: {
-              writer: data.writer,
-              password: data.password,
-              title: data.title,
-              contents: data.contents,
-              youtubeUrl: data.youtubeUrl,
-              boardAddress: {
-                zipcode,
-                address,
-                addressDetail: data.boardAddress.addressDetail,
-              },
+    try {
+      const result = await createBoard({
+        variables: {
+          createBoardInput: {
+            writer: data.writer,
+            password: data.password,
+            title: data.title,
+            contents: data.contents,
+            youtubeUrl: data.youtubeUrl,
+            boardAddress: {
+              zipcode,
+              address,
+              addressDetail: data.boardAddress.addressDetail,
             },
           },
-        });
+        },
+      });
 
-        console.log(result.data?.createBoard._id);
-        if (result.data?.createBoard._id === undefined) {
-          alert("요청에 문제가 있습니다.");
-          return;
-        }
-
-        void router.push(`/boards/${result.data?.createBoard._id}`);
-      } catch (error) {
-        if (error instanceof Error) alert(error.message);
+      console.log(result.data?.createBoard._id);
+      if (result.data?.createBoard._id === undefined) {
+        alert("요청에 문제가 있습니다.");
+        return;
       }
+
+      void router.push(`/boards/${result.data?.createBoard._id}`);
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
     }
   };
+
+  // if (
+  //   data.writer !== "" &&
+  //   data.password !== "" &&
+  //   data.title !== "" &&
+  //   data.contents !== ""
+  // ) {
+  //   setIsActive(true);
+  // } else {
+  //   setIsActive(false);
+  // }
 
   const onClickAddressSearch = (): void => {
     setIsOpen((prev) => !prev);

@@ -1,17 +1,19 @@
+import { useRecoilState } from "recoil";
 import * as S from "./login.styles";
 import type { IloginProps } from "./login.types";
+import { openState } from "../../commons/store";
 
 export default function LoginPresenter(props: IloginProps): JSX.Element {
-  if (typeof props.isTrue !== "boolean") return <></>;
+  const [isOpen, setIsOpen] = useRecoilState(openState);
   return (
     <>
       <S.Wrapper>
-        {props.isTrue && (
+        {isOpen && (
           <S.ModalWrapper>
             <S.Modal>
               <S.TitleWrapper>
                 <S.Title>login</S.Title>
-                <S.Close onClick={props.handleModal}></S.Close>
+                <S.Close onClick={() => setIsOpen((prev) => !prev)}></S.Close>
               </S.TitleWrapper>
               <S.Wapper>
                 <S.EmailInputWrapper>
@@ -31,7 +33,7 @@ export default function LoginPresenter(props: IloginProps): JSX.Element {
                   <S.PasswordError>{props.passwordError}</S.PasswordError>
                 </S.PasswordInputWrapper>
                 <S.buttonWrapper>
-                  <S.submit onChange={props.onClickLogin}>log in</S.submit>
+                  <S.submit onClick={props.onClickLogin}>log in</S.submit>
                 </S.buttonWrapper>
               </S.Wapper>
               <S.EtcButton>

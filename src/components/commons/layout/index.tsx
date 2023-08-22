@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import LayoutBanner from "./banner/LayoutBanner.container";
 import LayoutFooter from "./footer/LayoutFooter.container";
-import LayoutHeader from "./header/LayoutHeader.container";
+import LayoutHeader from "./header/LayoutHeader.index";
 import LayoutNavigation from "./navigation/LayoutNavigation.container";
 import styled from "@emotion/styled";
 
