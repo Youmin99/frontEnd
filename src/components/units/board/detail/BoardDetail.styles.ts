@@ -4,7 +4,7 @@ import ReactPlayer from "react-player";
 
 export const Wrapper = styled.div`
   width: 1000px;
-  margin: 100px 100px 0px 100px;
+  margin: 0px 0px 100px 60px;
 
   @media screen and (max-width: 1024px) {
     width: 700px;

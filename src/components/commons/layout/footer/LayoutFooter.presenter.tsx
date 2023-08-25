@@ -10,10 +10,9 @@ export default function LayoutFooterUI(props: ILayoutHeaderProps): JSX.Element {
   return (
     <Wrapper>
       <InnerWrapper>
-        <InnerLogo onClick={props.onClickLogo}>💎 LIVE</InnerLogo>
+        <InnerLogo onClick={props.onClickLogo}>post</InnerLogo>
         <div>
-          <InnerButton onClick={props.onClickMoveToLogin}>로그인</InnerButton>
-          <InnerButton>회원가입</InnerButton>
+          <InnerButton onClick={props.onClickMoveToLogin}>login</InnerButton>
         </div>
       </InnerWrapper>
     </Wrapper>

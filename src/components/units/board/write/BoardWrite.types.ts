@@ -41,7 +41,7 @@ export interface IBoardWriteUIProps {
   onClickSubmit: (data: any) => void;
   onClickAddressSearch: () => void;
   onCompleteAddressSearch: (data: any) => void;
-  onClickUpdate: () => void;
+  onClickUpdate: (data: any) => void;
   isActive: boolean;
   isEdit: boolean;
   data?: Pick<IQuery, "fetchBoard">;

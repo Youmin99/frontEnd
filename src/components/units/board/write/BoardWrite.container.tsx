@@ -6,22 +6,26 @@ import BoardWriteUI from "./BoardWrite.presenter";
 import type { IBoardWriteProps } from "./BoardWrite.types";
 import type { Address } from "react-daum-postcode";
 import { useMutationCreateBoard } from "../../../commons/hooks/mutations/useMutationCreateBoard";
-// import { useMutationUpdateBoard } from "../../../commons/hooks/mutations/useMutationUpdateBoard";
+import { useMutationUpdateBoard } from "../../../commons/hooks/mutations/useMutationUpdateBoard";
 import { useForm } from "react-hook-form";
-import { schema } from "../../../commons/error/BoardWrite.yup";
+import { createwrite } from "../../../commons/error/BoardWrite.yup";
 
 export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   const router = useRouter();
-  const [isActive, setIsActive] = useState(false);
+  const [isActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
 
   const [createBoard] = useMutationCreateBoard();
-  // const [updateBoard] = useMutationUpdateBoard();
+  const [updateBoard] = useMutationUpdateBoard();
 
   const { register, handleSubmit, formState } = useForm({
-    resolver: yupResolver(schema),
+    // defaultValues: {
+    //   writer: props.isEdit ? props.data?.fetchBoard.writer : "",
+    //   title: props.data?.fetchBoard.title,
+    // },
+    resolver: yupResolver(createwrite),
     mode: "onChange",
   });
 
@@ -48,7 +52,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
 
       console.log(result.data?.createBoard._id);
       if (result.data?.createBoard._id === undefined) {
-        alert("요청에 문제가 있습니다.");
+        alert("error");
         return;
       }
 
@@ -57,17 +61,6 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       if (error instanceof Error) alert(error.message);
     }
   };
-
-  // if (
-  //   data.writer !== "" &&
-  //   data.password !== "" &&
-  //   data.title !== "" &&
-  //   data.contents !== ""
-  // ) {
-  //   setIsActive(true);
-  // } else {
-  //   setIsActive(false);
-  // }
 
   const onClickAddressSearch = (): void => {
     setIsOpen((prev) => !prev);
@@ -79,53 +72,31 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     setIsOpen((prev) => !prev);
   };
 
-  const onClickUpdate = async (): Promise<void> => {
-    // if (
-    //   title === "" &&
-    //   contents === "" &&
-    //   youtubeUrl === "" &&
-    //   address === "" &&
-    //   addressDetail === "" &&
-    //   zipcode === ""
-    // ) {
-    //   alert("수정한 내용이 없습니다.");
-    //   return;
-    // }
-    // if (password === "") {
-    //   alert("비밀번호를 입력해주세요.");
-    //   return;
-    // }
-    // const updateBoardInput: IUpdateBoardInput = {};
-    // if (title !== "") updateBoardInput.title = title;
-    // if (contents !== "") updateBoardInput.contents = contents;
-    // if (youtubeUrl !== "") updateBoardInput.youtubeUrl = youtubeUrl;
-    // if (zipcode !== "" || address !== "" || addressDetail !== "") {
-    //   updateBoardInput.boardAddress = {};
-    //   if (zipcode !== "") updateBoardInput.boardAddress.zipcode = zipcode;
-    //   if (address !== "") updateBoardInput.boardAddress.address = address;
-    //   if (addressDetail !== "")
-    //     updateBoardInput.boardAddress.addressDetail = addressDetail;
-    // }
-    // try {
-    //   if (typeof router.query.boardId !== "string") {
-    //     alert("시스템에 문제가 있습니다.");
-    //     return;
-    //   }
-    //   const result = await updateBoard({
-    //     variables: {
-    //       boardId: router.query.boardId,
-    //       password,
-    //       updateBoardInput,
-    //     },
-    //   });
-    //   if (result.data?.updateBoard._id === undefined) {
-    //     alert("요청에 문제가 있습니다.");
-    //     return;
-    //   }
-    //   void router.push(`/boards/${result.data?.updateBoard._id}`);
-    // } catch (error) {
-    //   if (error instanceof Error) alert(error.message);
-    // }
+  const onClickUpdate = async (data: any): Promise<void> => {
+    try {
+      if (typeof router.query.boardId !== "string") {
+        alert("error");
+        return;
+      }
+      const result = await updateBoard({
+        variables: {
+          boardId: router.query.boardId,
+          password: data.password,
+          updateBoardInput: {
+            title: data.title,
+            contents: data.contents,
+            youtubeUrl: data.youtubeUrl,
+          },
+        },
+      });
+      if (result.data?.updateBoard._id === undefined) {
+        alert("error with request.");
+        return;
+      }
+      void router.push(`/boards/${result.data?.updateBoard._id}`);
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+    }
   };
 
   return (

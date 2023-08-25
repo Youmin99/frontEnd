@@ -13,7 +13,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
       <S.Wrapper
         onSubmit={
           props.isEdit
-            ? props.onClickUpdate
+            ? wrapAsync(props.handleSubmit(props.onClickUpdate))
             : wrapAsync(props.handleSubmit(props.onClickSubmit))
         }
       >

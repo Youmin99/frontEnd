@@ -5,13 +5,21 @@ import LayoutHeader from "./header/LayoutHeader.index";
 import LayoutNavigation from "./navigation/LayoutNavigation.container";
 import styled from "@emotion/styled";
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+`;
 const Body = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
-const HIDDEN_BANNER = ["/boards/new"];
+const HIDDEN_BANNER = ["/"];
 
 interface ILayoutProps {
   children: JSX.Element;
@@ -22,9 +30,12 @@ export default function Layout(props: ILayoutProps): JSX.Element {
   return (
     <>
       <LayoutHeader />
-      <LayoutNavigation isfront={true} />
+
       {!isHidden && <LayoutBanner />}
-      <Body>{props.children}</Body>
+      <Wrapper>
+        <LayoutNavigation isfront={true} />
+        <Body>{props.children}</Body>
+      </Wrapper>
       <LayoutFooter />
     </>
   );

@@ -9,7 +9,7 @@ import { useMutationCreateUser } from "../../commons/hooks/mutations/useMutation
 
 export default function CreateAccount(): JSX.Element {
   const router = useRouter();
-  const [isActive, setIsActive] = useState(false);
+  const [isActive] = useState(false);
 
   const [createUser] = useMutationCreateUser();
 
@@ -32,7 +32,7 @@ export default function CreateAccount(): JSX.Element {
 
       console.log(result.data?.createUser._id);
       if (result.data?.createUser._id === undefined) {
-        alert("요청에 문제가 있습니다.");
+        alert("error");
         return;
       }
 
