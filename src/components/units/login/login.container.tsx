@@ -2,36 +2,21 @@ import { useState } from "react";
 import type { ChangeEvent } from "react";
 import { useRecoilState } from "recoil";
 import LoginPresenter from "./login.presenter";
-import { accessTokenState, trueState } from "../../commons/store";
-import { useMutation, gql } from "@apollo/client";
-import type {
-  IMutation,
-  IMutationLoginUserArgs,
-} from "../../../commons/types/generated/types";
+import { accessTokenState, openState } from "../../commons/store";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
+import { useMutationLoginUser } from "../../commons/hooks/mutations/useMutationLoginUser";
 
-export default function Login(prop: { page: boolean }): JSX.Element {
-  const [isTrue, setIsTrue] = useRecoilState(trueState);
+export default function Login(): JSX.Element {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const router = useRouter();
   const [, setaccessToken] = useRecoilState(accessTokenState);
+  const [, setIsOpen] = useRecoilState(openState);
 
-  const LOGIN_USER = gql`
-    mutation loginUser($email: String) {
-      loginUser(email: $email, password: $password) {
-        accessToken
-      }
-    }
-  `;
-
-  const [loginUser] = useMutation<
-    Pick<IMutation, "loginUser">,
-    IMutationLoginUserArgs
-  >(LOGIN_USER);
+  const [loginUser] = useMutationLoginUser();
 
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>): void => {
     setEmail(event.target.value);
@@ -52,10 +37,7 @@ export default function Login(prop: { page: boolean }): JSX.Element {
   };
 
   const onClickLogin = async (): Promise<void> => {
-    if (emailError === "" && passwordError === "") {
-      alert("wellcome");
-    }
-
+    console.log(password);
     try {
       const result = await loginUser({
         variables: {
@@ -67,7 +49,8 @@ export default function Login(prop: { page: boolean }): JSX.Element {
 
       if (typeof accesstoken === "string") {
         setaccessToken(accesstoken);
-        void router.push("/loginsuccess");
+        setIsOpen(false);
+        void router.push("/boards");
         localStorage.setItem("accessToken", accesstoken);
       }
     } catch (error) {
@@ -75,19 +58,13 @@ export default function Login(prop: { page: boolean }): JSX.Element {
     }
   };
 
-  const handleModal = (): void => {
-    setIsTrue((prev) => !prev);
-  };
-
   return (
     <LoginPresenter
       onChangeEmail={onChangeEmail}
       onChangePassword={onChangePassword}
       onClickLogin={onClickLogin}
-      handleModal={handleModal}
       emailError={emailError}
       passwordError={passwordError}
-      isTrue={isTrue ?? prop.page}
     />
   );
 }
