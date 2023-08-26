@@ -30,8 +30,6 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   });
 
   const onClickSubmit = async (data: any): Promise<void> => {
-    console.log(data);
-
     try {
       const result = await createBoard({
         variables: {
@@ -86,6 +84,11 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
             title: data.title,
             contents: data.contents,
             youtubeUrl: data.youtubeUrl,
+            boardAddress: {
+              zipcode,
+              address,
+              addressDetail: data.boardAddress.addressDetail,
+            },
           },
         },
       });

@@ -44,18 +44,22 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
             />
           )}
         </S.Body>
-      </S.CardWrapper>
-      <S.BottomWrapper>
-        <S.Button>list</S.Button>
-        {typeof router.query.boardId === "string" && (
+      </S.CardWrapper>{" "}
+      {typeof router.query.boardId === "string" && (
+        <S.BottomWrapper>
+          <S.Button onClick={onClickMoveToPage(`/boards`)}>list</S.Button>
           <S.Button
             onClick={onClickMoveToPage(`/boards/${router.query.boardId}/edit`)}
           >
             edit
           </S.Button>
-        )}
-        <S.Button>delete</S.Button>
-      </S.BottomWrapper>
+          <S.Button
+            onClick={() => props.onClickDelete(`${router.query.boardId}`)}
+          >
+            delete
+          </S.Button>
+        </S.BottomWrapper>
+      )}
     </S.Wrapper>
   );
 }
