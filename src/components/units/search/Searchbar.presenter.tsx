@@ -7,10 +7,7 @@ export default function SearchPresenter(
   return (
     <Searchbar>
       <FireFilledIcon />
-      <SearchbarInput
-        placeholder="검색어를 입력해 주세요."
-        onChange={props.onChangeSearchbar}
-      />
+      <SearchbarInput placeholder="search" onChange={props.onChangeSearchbar} />
     </Searchbar>
   );
 }

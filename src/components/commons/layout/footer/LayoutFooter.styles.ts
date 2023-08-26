@@ -7,6 +7,12 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: flex-end;
   width: 100%;
+  @media screen and (max-width: 1024px) {
+    padding: 0px 30px 0px 30px;
+  }
+  @media screen and (max-width: 767px) {
+    padding: 0px 30px 0px 30px;
+  }
 `;
 
 export const InnerWrapper = styled.div`

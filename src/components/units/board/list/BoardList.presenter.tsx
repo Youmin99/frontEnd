@@ -17,9 +17,9 @@ export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
       <S.TableTop />
       <S.Row>
         <S.ColumnHeaderBasic>ID</S.ColumnHeaderBasic>
-        <S.ColumnHeaderTitle>제목</S.ColumnHeaderTitle>
-        <S.ColumnHeaderBasic>작성자</S.ColumnHeaderBasic>
-        <S.ColumnHeaderBasic>날짜</S.ColumnHeaderBasic>
+        <S.ColumnHeaderTitle>title</S.ColumnHeaderTitle>
+        <S.ColumnHeaderBasic>writer</S.ColumnHeaderBasic>
+        <S.ColumnHeaderBasic>date</S.ColumnHeaderBasic>
       </S.Row>
       {props.data?.fetchBoards.map((el) => (
         <S.Row key={el._id}>
@@ -41,7 +41,7 @@ export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
         <Paginations01 refetch={props.refetch} count={props.count} />
         <S.Button onClick={onClickMoveToPage("/boards/new")}>
           <S.PencilIcon src="/images/board/list/write.png" />
-          게시물 등록하기
+          write post
         </S.Button>
       </S.Footer>
     </S.Wrapper>

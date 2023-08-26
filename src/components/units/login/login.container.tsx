@@ -37,7 +37,6 @@ export default function Login(): JSX.Element {
   };
 
   const onClickLogin = async (): Promise<void> => {
-    console.log(password);
     try {
       const result = await loginUser({
         variables: {

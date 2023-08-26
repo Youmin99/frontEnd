@@ -22,9 +22,11 @@ export const Wrapper = styled.form`
 
   @media screen and (max-width: 1024px) {
     width: 700px;
+    margin: 20px 0px 20px 0px;
   }
   @media screen and (max-width: 767px) {
     width: 500px;
+    margin: 20px 0px 20px 0px;
   }
 `;
 

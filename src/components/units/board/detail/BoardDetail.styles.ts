@@ -8,9 +8,11 @@ export const Wrapper = styled.div`
 
   @media screen and (max-width: 1024px) {
     width: 700px;
+    margin: 20px;
   }
   @media screen and (max-width: 767px) {
     width: 400px;
+    margin: 20px;
   }
 `;
 

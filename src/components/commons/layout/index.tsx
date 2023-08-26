@@ -30,7 +30,6 @@ export default function Layout(props: ILayoutProps): JSX.Element {
   return (
     <>
       <LayoutHeader />
-
       {!isHidden && <LayoutBanner />}
       <Wrapper>
         <LayoutNavigation isfront={true} />
