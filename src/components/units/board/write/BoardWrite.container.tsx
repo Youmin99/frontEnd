@@ -9,6 +9,8 @@ import { useMutationCreateBoard } from "../../../commons/hooks/mutations/useMuta
 import { useMutationUpdateBoard } from "../../../commons/hooks/mutations/useMutationUpdateBoard";
 import { useForm } from "react-hook-form";
 import { createwrite } from "../../../commons/error/BoardWrite.yup";
+import { FETCH_BOARD } from "../../../commons/hooks/queries/useQueryFetchBoard";
+import { FETCH_BOARDS } from "../../../commons/hooks/queries/useQueryFetchBoards";
 
 export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   const router = useRouter();
@@ -46,6 +48,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
             },
           },
         },
+        refetchQueries: [{ query: FETCH_BOARDS }],
       });
 
       console.log(result.data?.createBoard._id);
@@ -91,6 +94,12 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
             },
           },
         },
+        refetchQueries: [
+          {
+            query: FETCH_BOARD,
+            variables: { boardId: router.query.boardId },
+          },
+        ],
       });
       if (result.data?.updateBoard._id === undefined) {
         alert("error with request.");

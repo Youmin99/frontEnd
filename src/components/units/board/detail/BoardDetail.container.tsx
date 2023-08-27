@@ -3,6 +3,7 @@ import BoardDetailUI from "./BoardDetail.presenter";
 import { useQueryFetchBoard } from "../../../commons/hooks/queries/useQueryFetchBoard";
 import { useMutationDeleteBoard } from "../../../commons/hooks/mutations/useMutationDeleteBoard";
 import { Modal } from "antd";
+import { FETCH_BOARDS } from "../../../commons/hooks/queries/useQueryFetchBoards";
 // import { MouseEvent } from "react";
 
 export default function BoardDetail(): JSX.Element {
@@ -17,6 +18,11 @@ export default function BoardDetail(): JSX.Element {
         variables: {
           boardId,
         },
+        refetchQueries: [
+          {
+            query: FETCH_BOARDS,
+          },
+        ],
       });
 
       void router.push(`/boards`);
