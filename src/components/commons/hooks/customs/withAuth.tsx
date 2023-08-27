@@ -1,14 +1,23 @@
 // src/components/commons/hooks/useAuth.tsx
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { useRecoilValueLoadable } from "recoil";
+import { restoreAccesseTokenLoadable } from "../../store";
 
 export const useAuth = (): void => {
   const router = useRouter();
-  // useEffect 훅스를 사용하고 있기 때문에 커스텀 훅스입니다.
+
   useEffect(() => {
-    if (!localStorage.getItem("accessToken")) {
-      alert("after login!");
-      void router.push("/boards");
-    }
+    // if (!localStorage.getItem("accessToken")) {
+    //   alert("after login!");
+    //   void router.push("/boards");
+    // }
+    const AccesseToken = useRecoilValueLoadable(restoreAccesseTokenLoadable);
+    void AccesseToken.toPromise().then((newAccesseToken) => {
+      if (newAccesseToken === undefined) {
+        alert("after login!");
+        void router.push("/boards");
+      }
+    });
   }, []);
 };
