@@ -23,9 +23,6 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
   const AccesseToken = useRecoilValueLoadable(restoreAccesseTokenLoadable);
 
   useEffect(() => {
-    // if (localStorage.getItem("accessToken")) {
-    //   setAccessToken(localStorage.getItem("accessToken") ?? "");
-    // }
     void AccesseToken.toPromise().then((newAccesseToken) => {
       setAccessToken(newAccesseToken ?? "");
     });
@@ -53,13 +50,14 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
   });
 
   const uploadLink = createUploadLink({
-    uri: "https://backend08.codebootcamp.co.kr/graphql",
+    // https://backend08.codebootcamp.co.kr/graphql
+    uri: "https://backend-practice.codebootcamp.co.kr/graphql",
     headers: { Authorization: `Bearer ${accessToken}` },
     credentials: "include",
   });
 
   const client = new ApolloClient({
-    link: ApolloLink.from([uploadLink, errorLink]),
+    link: ApolloLink.from([errorLink, uploadLink]),
     cache: GLOBAL_STATE,
     connectToDevTools: true,
   });

@@ -8,11 +8,8 @@ export const useAuth = (): void => {
   const router = useRouter();
 
   useEffect(() => {
-    // if (!localStorage.getItem("accessToken")) {
-    //   alert("after login!");
-    //   void router.push("/boards");
-    // }
     const AccesseToken = useRecoilValueLoadable(restoreAccesseTokenLoadable);
+
     void AccesseToken.toPromise().then((newAccesseToken) => {
       if (newAccesseToken === undefined) {
         alert("after login!");
