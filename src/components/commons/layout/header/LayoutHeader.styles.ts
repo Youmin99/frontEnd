@@ -24,6 +24,18 @@ export const InnerWrapper = styled.div`
   align-items: center;
   font-size: 18px;
 `;
+export const MeunWrapper = styled.div``;
+
+export const DWrapper = styled.div`
+  background-color: orange;
+  border-radius: 15px;
+  margin-left: 50px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  z-index: 10;
+`;
 
 export const InnerLogo = styled.div`
   font-size: 30px;
@@ -38,4 +50,18 @@ export const InnerButton = styled.div`
   margin: 10px;
   color: black;
   cursor: pointer;
+`;
+
+export const MenuItems = styled.div`
+  margin-bottom: 25px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 0px;
+  }
+
+  :hover {
+    color: orange;
+  }
 `;

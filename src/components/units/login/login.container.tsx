@@ -50,7 +50,6 @@ export default function Login(): JSX.Element {
         setaccessToken(accesstoken);
         setIsOpen(false);
         void router.push("/boards");
-        localStorage.setItem("accessToken", accesstoken);
       }
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message });
