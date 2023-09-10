@@ -1,6 +1,8 @@
 import { wrapAsync } from "../../../commons/hooks/customs/wrapAsync";
+import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
 import * as S from "./BoardWrite.styles";
 import type { IBoardWriteUIProps } from "./BoardWrite.types";
+import { v4 as uuidv4 } from "uuid";
 
 export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
   return (
@@ -71,7 +73,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
                   : props.data?.fetchBoard.boardAddress?.zipcode ?? ""
               }
             />
-            <S.SearchButton onClick={props.onClickAddressSearch}>
+            <S.SearchButton type="button" onClick={props.onClickAddressSearch}>
               search address
             </S.SearchButton>
           </S.ZipcodeWrapper>
@@ -100,9 +102,16 @@ export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
         </S.InputWrapper>
         <S.ImageWrapper>
           <S.Label>image</S.Label>
-          <S.UploadButton>+</S.UploadButton>
-          <S.UploadButton>+</S.UploadButton>
-          <S.UploadButton>+</S.UploadButton>
+          <S.ImageBox>
+            {props.fileUrls.map((el, index) => (
+              <Uploads01
+                key={uuidv4()}
+                index={index}
+                fileUrl={el}
+                onChangeFileUrls={props.onChangeFileUrls}
+              />
+            ))}
+          </S.ImageBox>
         </S.ImageWrapper>
         <S.ButtonWrapper>
           <S.OptionWrapper>
@@ -113,7 +122,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
             <S.RadioLabel htmlFor="image">image</S.RadioLabel>
           </S.OptionWrapper>
 
-          <S.SubmitButton isActive={props.isEdit ? true : props.isActive}>
+          <S.SubmitButton isActive={props.formState.isValid ?? true}>
             {props.isEdit ? "edit" : "post"}
           </S.SubmitButton>
         </S.ButtonWrapper>

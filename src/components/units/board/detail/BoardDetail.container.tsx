@@ -4,7 +4,6 @@ import { useQueryFetchBoard } from "../../../commons/hooks/queries/useQueryFetch
 import { useMutationDeleteBoard } from "../../../commons/hooks/mutations/useMutationDeleteBoard";
 import { Modal } from "antd";
 import { FETCH_BOARDS } from "../../../commons/hooks/queries/useQueryFetchBoards";
-// import { MouseEvent } from "react";
 
 export default function BoardDetail(): JSX.Element {
   const router = useRouter();

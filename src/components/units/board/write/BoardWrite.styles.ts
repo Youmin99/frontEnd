@@ -177,6 +177,10 @@ export const ImageWrapper = styled.div`
   }
 `;
 
+export const ImageBox = styled.div`
+  display: flex;
+`;
+
 export const UploadButton = styled.button`
   width: 78px;
   height: 78px;

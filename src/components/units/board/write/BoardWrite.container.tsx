@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import BoardWriteUI from "./BoardWrite.presenter";
-// import type { IUpdateBoardInput } from "../../../../commons/types/generated/types";
 import type { IBoardWriteProps } from "./BoardWrite.types";
 import type { Address } from "react-daum-postcode";
 import { useMutationCreateBoard } from "../../../commons/hooks/mutations/useMutationCreateBoard";
@@ -14,19 +13,15 @@ import { FETCH_BOARDS } from "../../../commons/hooks/queries/useQueryFetchBoards
 
 export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   const router = useRouter();
-  const [isActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
 
   const [createBoard] = useMutationCreateBoard();
   const [updateBoard] = useMutationUpdateBoard();
 
   const { register, handleSubmit, formState } = useForm({
-    // defaultValues: {
-    //   writer: props.isEdit ? props.data?.fetchBoard.writer : "",
-    //   title: props.data?.fetchBoard.title,
-    // },
     resolver: yupResolver(createwrite),
     mode: "onChange",
   });
@@ -46,6 +41,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
               address,
               addressDetail: data.boardAddress.addressDetail,
             },
+            images: [...fileUrls],
           },
         },
         refetchQueries: [{ query: FETCH_BOARDS }],
@@ -73,6 +69,18 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     setIsOpen((prev) => !prev);
   };
 
+  const onChangeFileUrls = (fileUrl: string, index: number): void => {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
+  };
+
+  useEffect(() => {
+    const images = props.data?.fetchBoard.images;
+    console.log(images);
+    if (images !== undefined && images !== null) setFileUrls([...images]);
+  }, []);
+
   const onClickUpdate = async (data: any): Promise<void> => {
     try {
       if (typeof router.query.boardId !== "string") {
@@ -92,6 +100,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
               address,
               addressDetail: data.boardAddress.addressDetail,
             },
+            images: [...fileUrls],
           },
         },
         refetchQueries: [
@@ -120,12 +129,13 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       onClickAddressSearch={onClickAddressSearch}
       onCompleteAddressSearch={onCompleteAddressSearch}
       onClickUpdate={onClickUpdate}
-      isActive={isActive}
       isEdit={props.isEdit}
       data={props.data}
       isOpen={isOpen}
       zipcode={zipcode}
       address={address}
+      fileUrls={fileUrls}
+      onChangeFileUrls={onChangeFileUrls}
     />
   );
 }

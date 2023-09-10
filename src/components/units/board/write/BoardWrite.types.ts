@@ -42,12 +42,13 @@ export interface IBoardWriteUIProps {
   onClickAddressSearch: () => void;
   onCompleteAddressSearch: (data: any) => void;
   onClickUpdate: (data: any) => void;
-  isActive: boolean;
+  onChangeFileUrls: (fileUrls: string, index: number) => void;
   isEdit: boolean;
   data?: Pick<IQuery, "fetchBoard">;
   isOpen: boolean;
   zipcode: string;
   address: string;
+  fileUrls: string[];
 }
 
 export interface ISubmitButtonProps {
