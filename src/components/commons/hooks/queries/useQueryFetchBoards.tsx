@@ -1,8 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import {
-  IQuery,
-  IQueryFetchBoardsArgs,
-} from "../../../../commons/types/generated/types";
+import { IQuery } from "../../../../commons/types/generated/types";
 
 export const FETCH_BOARDS = gql`
   query fetchBoards($page: Int, $search: String) {
@@ -16,9 +13,7 @@ export const FETCH_BOARDS = gql`
 `;
 
 export const useQueryFetchBoards = () => {
-  const query = useQuery<Pick<IQuery, "fetchBoards">, IQueryFetchBoardsArgs>(
-    FETCH_BOARDS
-  );
+  const query = useQuery<Pick<IQuery, "fetchBoards">>(FETCH_BOARDS);
 
   return query;
 };

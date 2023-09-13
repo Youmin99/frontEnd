@@ -5,7 +5,7 @@ import {
 } from "../../../../commons/types/generated/types";
 
 export const FETCH_BOARD_COMMENTS = gql`
-  query fetchBoardComments($boardId: ID!, $page: Int) {
+  query fetchBoardComments($boardId: String!, $page: Int) {
     fetchBoardComments(boardId: $boardId, page: $page) {
       _id
       writer

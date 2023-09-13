@@ -77,9 +77,8 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
 
   useEffect(() => {
     const images = props.data?.fetchBoard.images;
-    console.log(images);
     if (images !== undefined && images !== null) setFileUrls([...images]);
-  }, []);
+  }, [props.data]);
 
   const onClickUpdate = async (data: any): Promise<void> => {
     try {

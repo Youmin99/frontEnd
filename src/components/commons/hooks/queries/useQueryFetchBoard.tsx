@@ -5,14 +5,12 @@ import {
 } from "../../../../commons/types/generated/types";
 
 export const FETCH_BOARD = gql`
-  query fetchBoard($boardId: ID!) {
+  query fetchBoard($boardId: String!) {
     fetchBoard(boardId: $boardId) {
       _id
       writer
       title
       contents
-      likeCount
-      dislikeCount
       boardAddress {
         zipcode
         address

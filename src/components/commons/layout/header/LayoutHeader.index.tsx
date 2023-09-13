@@ -20,7 +20,7 @@ import { Modal } from "antd";
 export const menuItems = [
   {
     title: "mypage",
-    url: "myaccount",
+    url: "account",
   },
   {
     title: "log out",
@@ -31,6 +31,7 @@ export const menuItems = [
 export default function LayoutHeader(): JSX.Element {
   const { onClickMoveToPage } = useMoveToPage();
   const [isOpen, setIsOpen] = useRecoilState(openState);
+
   const { data } = useQueryFetchUserLoggedIn();
   const [logoutUser] = useMutationLoginOutUser();
   const [dropdown, setDropdown] = useState(false);
@@ -77,7 +78,7 @@ export default function LayoutHeader(): JSX.Element {
             <InnerButton onClick={() => setIsOpen((prev) => !prev)}>
               log in
             </InnerButton>
-            <InnerButton onClick={onClickMoveToPage(`/account`)}>
+            <InnerButton onClick={onClickMoveToPage(`/createaccount`)}>
               create account
             </InnerButton>
           </div>

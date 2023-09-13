@@ -11,5 +11,5 @@ export const schema = yup.object().shape({
 
   email: yup.string().required("write email"),
 
-  phone: yup.string().required("write phone"),
+  phone: yup.number().required("write phone"),
 });

@@ -7,7 +7,7 @@ import {
 export const CREATE_BOARD_COMMENT = gql`
   mutation createBoardComment(
     $createBoardCommentInput: CreateBoardCommentInput!
-    $boardId: ID!
+    $boardId: String!
   ) {
     createBoardComment(
       createBoardCommentInput: $createBoardCommentInput

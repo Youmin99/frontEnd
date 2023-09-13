@@ -26,6 +26,7 @@ export default function CreateAccount(): JSX.Element {
             name: data.user,
             password: data.password,
             email: data.email,
+            phone: data.phone,
           },
         },
       });

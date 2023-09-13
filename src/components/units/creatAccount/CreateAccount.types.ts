@@ -10,15 +10,16 @@ export interface ICreateAccountUIProps {
     user: string;
     password: string;
     email: string;
-    phone: string;
+    phone: number;
   }>;
 
   formState: FormState<{
     user: string;
     password: string;
     email: string;
-    phone: string;
+    phone: number;
   }>;
+
   handleSubmit: UseFormHandleSubmit<FieldValues, undefined>;
   onClickSubmit: (data: any) => void;
   isActive: boolean;

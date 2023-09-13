@@ -24,7 +24,7 @@ export default function Uploads01(props: IUploads01Props): JSX.Element {
 
     try {
       const result = await uploadFile({ variables: { file } });
-      props.onChangeFileUrls(result.data.uploadFile.url, props.index);
+      props.onChangeFileUrls(result.data.uploadFile, props.index);
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message });
     }

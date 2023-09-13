@@ -5,7 +5,7 @@ import {
 } from "../../../../commons/types/generated/types";
 
 export const DELETE_BOARD_COMMENT = gql`
-  mutation deleteBoardComment($password: String, $boardCommentId: ID!) {
+  mutation deleteBoardComment($password: String, $boardCommentId: String!) {
     deleteBoardComment(password: $password, boardCommentId: $boardCommentId)
   }
 `;
