@@ -2,6 +2,7 @@ import { useRecoilState } from "recoil";
 import * as S from "./login.styles";
 import type { IloginProps } from "./login.types";
 import { openState } from "../../commons/store";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function LoginPresenter(props: IloginProps): JSX.Element {
   const [isOpen, setIsOpen] = useRecoilState(openState);
@@ -13,7 +14,10 @@ export default function LoginPresenter(props: IloginProps): JSX.Element {
             <S.Modal>
               <S.TitleWrapper>
                 <S.Title>login</S.Title>
-                <S.Close onClick={() => setIsOpen((prev) => !prev)}></S.Close>
+                <S.Close
+                  icon={faXmark}
+                  onClick={() => setIsOpen((prev) => !prev)}
+                />
               </S.TitleWrapper>
               <S.Wapper>
                 <S.EmailInputWrapper>

@@ -1,7 +1,7 @@
-import { CloseOutlined } from "@ant-design/icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import styled from "@emotion/styled";
 import Link from "next/link";
-
 export const Wrapper = styled.div`
   top: 0;
   left: 0;
@@ -34,7 +34,7 @@ export const TitleWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const Close = styled(CloseOutlined)`
+export const Close = styled(FontAwesomeIcon)`
   margin: 33px;
 `;
 
