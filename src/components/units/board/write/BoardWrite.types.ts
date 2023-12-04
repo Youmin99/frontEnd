@@ -20,7 +20,8 @@ export interface IBoardWriteUIProps {
     boardAddress: {
       zipcode?: string | undefined;
       address?: string | undefined;
-      addressDetail?: string | undefined;
+      state?: string | undefined;
+      city?: string | undefined;
     };
     youtubeUrl: string | undefined;
   }>;

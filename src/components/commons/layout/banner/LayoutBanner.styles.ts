@@ -5,12 +5,13 @@ export const Wrapper = styled.div`
   z-index: 1;
   height: 390px;
   width: 100%;
+  border: none;
 `;
 
 export const SliderItem = styled.img`
   position: relative;
   z-index: 1;
-  width: 100%;
+  width: 73%;
   height: 350px;
   margin: auto;
   border-radius: 20px;

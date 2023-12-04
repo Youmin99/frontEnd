@@ -7,11 +7,11 @@ import { v4 as uuidv4 } from "uuid";
 export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
   return (
     <>
-      {props.isOpen && (
+      {/* {props.isOpen && (
         <S.AddressModal visible={true}>
           <S.AddressSearchInput onComplete={props.onCompleteAddressSearch} />
         </S.AddressModal>
-      )}
+      )} */}
       <S.Wrapper
         onSubmit={
           props.isEdit
@@ -22,7 +22,6 @@ export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
         <S.Title>{props.isEdit ? "edit" : "posts"}</S.Title>
         <S.WriterWrapper>
           <S.InputWrapper>
-            <S.Label>user</S.Label>
             <S.Writer
               type="text"
               placeholder="wtie name."
@@ -33,7 +32,6 @@ export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
             <S.Error>{props.formState.errors.writer?.message}</S.Error>
           </S.InputWrapper>
           <S.InputWrapper>
-            <S.Label>password</S.Label>
             <S.Password
               type="password"
               placeholder="write password."
@@ -43,7 +41,6 @@ export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
           </S.InputWrapper>
         </S.WriterWrapper>
         <S.InputWrapper>
-          <S.Label>title</S.Label>
           <S.Subject
             type="text"
             placeholder="write title."
@@ -53,7 +50,6 @@ export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
           <S.Error>{props.formState.errors.title?.message}</S.Error>
         </S.InputWrapper>
         <S.InputWrapper>
-          <S.Label>content</S.Label>
           <S.Contents
             placeholder="write content."
             {...props.register("contents")}
@@ -62,46 +58,37 @@ export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
           <S.Error>{props.formState.errors.contents?.message}</S.Error>
         </S.InputWrapper>
         <S.InputWrapper>
-          <S.Label>address</S.Label>
           <S.ZipcodeWrapper>
             <S.Zipcode
-              placeholder="07250"
-              readOnly
-              value={
-                props.zipcode !== ""
-                  ? props.zipcode
-                  : props.data?.fetchBoard.boardAddress?.zipcode ?? ""
+              placeholder="state"
+              {...props.register("boardAddress.state")}
+            />
+            <S.Address
+              placeholder="postal code"
+              {...props.register("boardAddress.zipcode")}
+            />
+            <S.AddressCity
+              placeholder="city"
+              {...props.register("boardAddress.city")}
+              defaultValue={
+                props.data?.fetchBoard.boardAddress?.addressDetail ?? ""
               }
             />
-            <S.SearchButton type="button" onClick={props.onClickAddressSearch}>
-              search address
-            </S.SearchButton>
+            <S.AddressDetail
+              placeholder="address"
+              {...props.register("boardAddress.address")}
+            />
           </S.ZipcodeWrapper>
-          <S.Address
-            readOnly
-            value={
-              props.address !== ""
-                ? props.address
-                : props.data?.fetchBoard.boardAddress?.address ?? ""
-            }
-          />
-          <S.Address
-            {...props.register("boardAddress.addressDetail")}
-            defaultValue={
-              props.data?.fetchBoard.boardAddress?.addressDetail ?? ""
-            }
-          />
         </S.InputWrapper>
         <S.InputWrapper>
-          <S.Label>youtube</S.Label>
           <S.Youtube
-            placeholder="copy link."
+            placeholder="youtube link."
             {...props.register("youtubeUrl")}
             defaultValue={props.data?.fetchBoard.youtubeUrl ?? ""}
           />
         </S.InputWrapper>
+
         <S.ImageWrapper>
-          <S.Label>image</S.Label>
           <S.ImageBox>
             {props.fileUrls.map((el, index) => (
               <Uploads01

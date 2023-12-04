@@ -1,8 +1,7 @@
-import { FireFilled } from "@ant-design/icons";
 import styled from "@emotion/styled";
 
 export const Searchbar = styled.div`
-  width: 776px;
+  width: 600px;
   height: 52px;
   border-radius: 15px;
   background-color: #f5f2fc;
@@ -15,16 +14,6 @@ export const Searchbar = styled.div`
   }
   @media screen and (max-width: 767px) {
     width: 300px;
-  }
-`;
-
-export const FireFilledIcon = styled(FireFilled)`
-  color: #5729ff;
-  font-size: 30px;
-  cursor: pointer;
-
-  :hover {
-    color: red;
   }
 `;
 

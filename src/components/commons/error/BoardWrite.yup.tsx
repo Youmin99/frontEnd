@@ -15,8 +15,9 @@ export const createwrite = yup.object().shape({
 
   boardAddress: yup.object().shape({
     zipcode: yup.string().optional(),
+    state: yup.string().optional(),
+    city: yup.string().optional(),
     address: yup.string().optional(),
-    addressDetail: yup.string().optional(),
   }),
 
   youtubeUrl: yup.string().optional(),

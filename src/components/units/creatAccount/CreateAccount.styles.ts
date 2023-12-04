@@ -7,6 +7,7 @@ export const Wrapper = styled.form`
   border: 1px solid black;
 
   margin-left: 200px;
+  margin-bottom: 50px;
   padding-top: 50px;
   padding-bottom: 100px;
   padding-left: 102px;

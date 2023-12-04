@@ -45,11 +45,51 @@ export const InnerLogo = styled.div`
   color: black;
   cursor: pointer;
 `;
-
 export const InnerButton = styled.div`
   margin: 10px;
   color: black;
   cursor: pointer;
+`;
+
+export const LoginBtn = styled.div`
+  width: 70px;
+  height: 37px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  border-radius: 5px;
+  margin: 10px;
+  color: black;
+  cursor: pointer;
+  font-size: 13px;
+`;
+
+export const RegisterBtn = styled.div`
+  width: 70px;
+  background-color: black;
+  height: 37px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  border-radius: 5px;
+  margin: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+`;
+
+export const MenuBar = styled.div`
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const Button = styled.div`
+  margin: 20px;
 `;
 
 export const MenuItems = styled.div`

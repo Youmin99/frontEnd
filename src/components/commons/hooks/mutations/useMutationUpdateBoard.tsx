@@ -7,7 +7,7 @@ import {
 export const UPDATE_BOARD = gql`
   mutation updateBoard(
     $boardId: String!
-    $password: String
+    $password: String!
     $updateBoardInput: UpdateBoardInput!
   ) {
     updateBoard(

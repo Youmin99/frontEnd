@@ -76,7 +76,10 @@ export default function BoardCommentWrite(
     }
 
     try {
-      const updateBoardCommentInput: IUpdateBoardCommentInput = {};
+      const updateBoardCommentInput: IUpdateBoardCommentInput = {
+        contents,
+        rating: 0,
+      };
       if (contents !== "") updateBoardCommentInput.contents = contents;
       if (star !== props.el?.rating) updateBoardCommentInput.rating = star;
 

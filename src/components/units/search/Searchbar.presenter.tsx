@@ -1,4 +1,6 @@
-import { FireFilledIcon, Searchbar, SearchbarInput } from "./Searchbars.styles";
+import { Searchbar, SearchbarInput } from "./Searchbars.styles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import type { ISearchbars01UIProps } from "./Searchbar.types";
 
 export default function SearchPresenter(
@@ -6,7 +8,7 @@ export default function SearchPresenter(
 ): JSX.Element {
   return (
     <Searchbar>
-      <FireFilledIcon />
+      <FontAwesomeIcon icon={faMagnifyingGlass} />
       <SearchbarInput placeholder="search" onChange={props.onChangeSearchbar} />
     </Searchbar>
   );

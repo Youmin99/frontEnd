@@ -1,19 +1,12 @@
 import Login from "../../../units/login/login.container";
-import {
-  DWrapper,
-  InnerButton,
-  InnerLogo,
-  InnerWrapper,
-  MenuItems,
-  MeunWrapper,
-  Wrapper,
-} from "./LayoutHeader.styles";
+import * as S from "./LayoutHeader.styles";
 import { useRecoilState } from "recoil";
 import { accessTokenState, openState } from "../../store";
 import { useMoveToPage } from "../../hooks/customs/useMoveToPage";
 import useQueryFetchUserLoggedIn from "../../hooks/queries/useQueryFetchUserLogin";
 import { useState } from "react";
-import { CaretDownFilled } from "@ant-design/icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useMutationLoginOutUser } from "../../hooks/mutations/useMutationlogoutUser";
 import { Modal } from "antd";
 
@@ -47,17 +40,16 @@ export default function LayoutHeader(): JSX.Element {
   };
 
   return (
-    <Wrapper>
-      <InnerWrapper>
-        <InnerLogo onClick={onClickMoveToPage(`/boards`)}>posts</InnerLogo>
-
+    <S.Wrapper>
+      <S.InnerWrapper>
+        <S.InnerLogo onClick={onClickMoveToPage(`/boards`)}>posts</S.InnerLogo>
         {data ? (
-          <MeunWrapper onClick={() => setDropdown((prev) => !prev)}>
-            <InnerButton>
-              {data.fetchUserLoggedIn.name} <CaretDownFilled />
-            </InnerButton>
+          <S.MeunWrapper onClick={() => setDropdown((prev) => !prev)}>
+            <S.InnerButton>
+              {data.fetchUserLoggedIn.name} <FontAwesomeIcon icon={faBars} />
+            </S.InnerButton>
             {dropdown && (
-              <DWrapper>
+              <S.DWrapper>
                 {menuItems.map((submenu, index) => (
                   <div
                     key={index}
@@ -65,26 +57,28 @@ export default function LayoutHeader(): JSX.Element {
                       submenu.title === "log out" ? await onClickLogOut() : "";
                     }}
                   >
-                    <MenuItems onClick={onClickMoveToPage(`/${submenu.url}`)}>
+                    <S.MenuItems onClick={onClickMoveToPage(`/${submenu.url}`)}>
                       {submenu.title}
-                    </MenuItems>
+                    </S.MenuItems>
                   </div>
                 ))}
-              </DWrapper>
+              </S.DWrapper>
             )}
-          </MeunWrapper>
+          </S.MeunWrapper>
         ) : (
-          <div>
-            <InnerButton onClick={() => setIsOpen((prev) => !prev)}>
-              log in
-            </InnerButton>
-            <InnerButton onClick={onClickMoveToPage(`/createaccount`)}>
-              create account
-            </InnerButton>
-          </div>
+          <S.MenuBar>
+            <S.Button>Community</S.Button>
+            <S.Button>Trade Product</S.Button>
+            <S.LoginBtn onClick={() => setIsOpen((prev) => !prev)}>
+              Login
+            </S.LoginBtn>
+            <S.RegisterBtn onClick={onClickMoveToPage(`/createaccount`)}>
+              Sing up
+            </S.RegisterBtn>
+          </S.MenuBar>
         )}
-      </InnerWrapper>
+      </S.InnerWrapper>
       {isOpen && <Login />}
-    </Wrapper>
+    </S.Wrapper>
   );
 }

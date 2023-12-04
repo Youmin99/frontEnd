@@ -2,12 +2,16 @@ import { useRouter } from "next/router";
 import LayoutBanner from "./banner/LayoutBanner.container";
 import LayoutFooter from "./footer/LayoutFooter.container";
 import LayoutHeader from "./header/LayoutHeader.index";
-import LayoutNavigation from "./navigation/LayoutNavigation.container";
+// import LayoutNavigation from "./navigation/LayoutNavigation.container";
 import styled from "@emotion/styled";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
+
+  justify-content: center;
+  align-items: center;
+
   @media screen and (max-width: 1024px) {
     flex-direction: column;
     justify-content: center;
@@ -32,7 +36,6 @@ export default function Layout(props: ILayoutProps): JSX.Element {
       <LayoutHeader />
       {!isHidden && <LayoutBanner />}
       <Wrapper>
-        <LayoutNavigation isfront={true} />
         <Body>{props.children}</Body>
       </Wrapper>
       <LayoutFooter />

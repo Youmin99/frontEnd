@@ -3,7 +3,7 @@ import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 import ReactPlayer from "react-player";
 
 export const Wrapper = styled.div`
-  width: 1000px;
+  width: 950px;
   margin: 0px 0px 100px 60px;
 
   @media screen and (max-width: 1024px) {
