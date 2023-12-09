@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
     margin: 20px;
   }
   @media screen and (max-width: 767px) {
-    width: 400px;
+    width: 350px;
     margin: 20px;
   }
 `;
@@ -83,10 +83,12 @@ export const Body = styled.div`
 
 export const Title = styled.h1`
   padding-top: 40px;
+  padding-left: 20px;
 `;
 
 export const Contents = styled.div`
   padding-top: 40px;
+  padding-left: 20px;
   padding-bottom: 120px;
 `;
 
@@ -129,6 +131,10 @@ export const Image = styled.img`
 
 export const Youtube = styled(ReactPlayer)`
   margin: auto;
+  @media screen and (max-width: 767px) {
+    width: 350px;
+    margin: 20px;
+  }
 `;
 
 export const LikeWrapper = styled.div`

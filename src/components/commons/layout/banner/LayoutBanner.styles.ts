@@ -5,6 +5,9 @@ export const Wrapper = styled.div`
   z-index: 1;
   height: 550px;
   width: 100%;
+  @media screen and (max-width: 767px) {
+    height: 250px;
+  }
 `;
 
 export const SliderItem = styled.img`
@@ -21,5 +24,6 @@ export const SliderItem = styled.img`
   }
   @media screen and (max-width: 767px) {
     width: 95%;
+    height: 250px;
   }
 `;

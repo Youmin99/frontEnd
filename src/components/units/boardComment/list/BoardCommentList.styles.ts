@@ -13,7 +13,7 @@ export const ItemWrapper = styled.div`
     width: 700px;
   }
   @media screen and (max-width: 767px) {
-    width: 400px;
+    width: 350px;
   }
 `;
 

@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
     width: 700px;
   }
   @media screen and (max-width: 767px) {
-    width: 400px;
+    width: 350px;
   }
 `;
 
@@ -32,11 +32,17 @@ export const ContentsWrapper = styled.div`
 
 export const Input = styled.input`
   width: 180px;
+
   height: 52px;
   padding-left: 20px;
   border: 1px solid lightgray;
   margin-right: 20px;
   border-radius: 30px;
+
+  @media screen and (max-width: 767px) {
+    width: 120px;
+    margin-right: 0px;
+  }
 `;
 
 export const Contents = styled.textarea`

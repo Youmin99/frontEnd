@@ -25,7 +25,8 @@ export const Wrapper = styled.form`
     margin: 20px 0px 20px 0px;
   }
   @media screen and (max-width: 767px) {
-    width: 500px;
+    width: 350px;
+    height: 800px;
     margin: 20px 0px 20px 0px;
   }
 `;
@@ -46,7 +47,7 @@ export const WriterWrapper = styled.div`
     width: 550px;
   }
   @media screen and (max-width: 767px) {
-    width: 350px;
+    width: 325px;
   }
 `;
 
@@ -103,7 +104,7 @@ export const AddressWrapper = styled.div`
     width: 600px;
   }
   @media screen and (max-width: 767px) {
-    width: 400px;
+    width: 325px;
   }
 `;
 
@@ -115,7 +116,7 @@ export const DivWrapper = styled.div`
     width: 600px;
   }
   @media screen and (max-width: 767px) {
-    width: 400px;
+    width: 325px;
   }
 `;
 
@@ -129,7 +130,7 @@ export const Subject = styled.input`
     width: 600px;
   }
   @media screen and (max-width: 767px) {
-    width: 400px;
+    width: 325px;
   }
 `;
 
@@ -144,7 +145,8 @@ export const Contents = styled.textarea`
     width: 600px;
   }
   @media screen and (max-width: 767px) {
-    width: 400px;
+    width: 325px;
+    height: 200px;
   }
 `;
 
@@ -160,7 +162,7 @@ export const ZipcodeWrapper = styled.div`
     width: 600px;
   }
   @media screen and (max-width: 767px) {
-    width: 400px;
+    width: 325px;
   }
 `;
 
@@ -202,6 +204,7 @@ export const AddressDetail = styled.input`
 export const Youtube = styled.input`
   width: 675px;
   height: 52px;
+  margin-top: 20px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
   border-radius: 15px;
@@ -209,7 +212,7 @@ export const Youtube = styled.input`
     width: 600px;
   }
   @media screen and (max-width: 767px) {
-    width: 400px;
+    width: 325px;
   }
 `;
 
@@ -221,7 +224,7 @@ export const ImageWrapper = styled.div`
     width: 600px;
   }
   @media screen and (max-width: 767px) {
-    width: 400px;
+    width: 325px;
   }
 `;
 
@@ -252,7 +255,7 @@ export const OptionWrapper = styled.div`
     width: 600px;
   }
   @media screen and (max-width: 767px) {
-    width: 400px;
+    width: 325px;
   }
 `;
 
@@ -277,7 +280,7 @@ export const ButtonWrapper = styled.div`
     width: 600px;
   }
   @media screen and (max-width: 767px) {
-    width: 400px;
+    width: 325px;
   }
 `;
 

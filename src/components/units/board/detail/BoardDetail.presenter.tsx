@@ -53,7 +53,7 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
           {props.data?.fetchBoard.youtubeUrl !== "" && (
             <S.Youtube
               url={props.data?.fetchBoard.youtubeUrl ?? ""}
-              width="486px"
+              width="300px"
               height="240px"
             />
           )}
