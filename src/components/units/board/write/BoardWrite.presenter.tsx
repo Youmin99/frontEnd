@@ -7,11 +7,6 @@ import { v4 as uuidv4 } from "uuid";
 export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
   return (
     <>
-      {/* {props.isOpen && (
-        <S.AddressModal visible={true}>
-          <S.AddressSearchInput onComplete={props.onCompleteAddressSearch} />
-        </S.AddressModal>
-      )} */}
       <S.Wrapper
         onSubmit={
           props.isEdit
@@ -59,24 +54,25 @@ export default function BoardWriteUI(props: IBoardWriteUIProps): JSX.Element {
         </S.InputWrapper>
         <S.InputWrapper>
           <S.ZipcodeWrapper>
-            <S.Zipcode
+            <S.State
               placeholder="state"
               {...props.register("boardAddress.state")}
+              defaultValue={props.data?.fetchBoard.boardAddress?.state ?? ""}
             />
             <S.Address
               placeholder="postal code"
               {...props.register("boardAddress.zipcode")}
+              defaultValue={props.data?.fetchBoard.boardAddress?.zipcode ?? ""}
             />
             <S.AddressCity
               placeholder="city"
               {...props.register("boardAddress.city")}
-              defaultValue={
-                props.data?.fetchBoard.boardAddress?.addressDetail ?? ""
-              }
+              defaultValue={props.data?.fetchBoard.boardAddress?.city ?? ""}
             />
             <S.AddressDetail
               placeholder="address"
               {...props.register("boardAddress.address")}
+              defaultValue={props.data?.fetchBoard.boardAddress?.address ?? ""}
             />
           </S.ZipcodeWrapper>
         </S.InputWrapper>

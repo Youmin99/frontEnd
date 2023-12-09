@@ -8,9 +8,9 @@ export default function CreateAccountUI(
   return (
     <>
       <S.Wrapper onSubmit={wrapAsync(props.handleSubmit(props.onClickSubmit))}>
-        <S.Title>{"CreateAccount"}</S.Title>
+        <S.Title>{"Create An Account"}</S.Title>
+        <p>Create an account to enjoy all the services free!</p>
         <S.InputWrapper>
-          <S.Label>user</S.Label>
           <S.Input
             type="text"
             placeholder="wtie name."
@@ -19,7 +19,6 @@ export default function CreateAccountUI(
           <S.Error>{props.formState.errors.user?.message}</S.Error>
         </S.InputWrapper>
         <S.InputWrapper>
-          <S.Label>password</S.Label>
           <S.Input
             type="password"
             placeholder="write password."
@@ -28,7 +27,6 @@ export default function CreateAccountUI(
           <S.Error>{props.formState.errors.password?.message}</S.Error>
         </S.InputWrapper>
         <S.InputWrapper>
-          <S.Label>email</S.Label>
           <S.Input
             type="text"
             placeholder="write email."
@@ -37,7 +35,6 @@ export default function CreateAccountUI(
           <S.Error>{props.formState.errors.email?.message}</S.Error>
         </S.InputWrapper>
         <S.InputWrapper>
-          <S.Label>phone number</S.Label>
           <S.Input
             placeholder="write phone number."
             {...props.register("phone")}
@@ -47,6 +44,7 @@ export default function CreateAccountUI(
         <S.SubmitButton isActive={props.isActive}>
           {"CreateAccount"}
         </S.SubmitButton>
+        <p>Already Have An Account? Sign In</p>
       </S.Wrapper>
     </>
   );

@@ -4,10 +4,10 @@ import type { ISubmitButtonProps } from "./BoardWrite.types";
 import DaumPostcode from "react-daum-postcode";
 
 export const Wrapper = styled.form`
-  width: 950px;
-  height: 1100px;
+  width: 750px;
+  height: 1000px;
   border: 1px solid black;
-  margin: 0px 0px 100px 60px;
+  margin: 0px 0px 100px;
   padding-top: 50px;
   padding-bottom: 100px;
   padding-left: 102px;
@@ -37,7 +37,7 @@ export const Title = styled.div`
 `;
 
 export const WriterWrapper = styled.div`
-  width: 850px;
+  width: 675px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -64,7 +64,7 @@ export const AddressInputWrapper = styled.div`
 `;
 
 export const Writer = styled.input`
-  width: 400px;
+  width: 325px;
   height: 52px;
   border: 1px solid #bdbdbd;
   border-radius: 15px;
@@ -77,7 +77,7 @@ export const Writer = styled.input`
 `;
 
 export const Password = styled.input`
-  width: 400px;
+  width: 325px;
   height: 52px;
   border: 1px solid #bdbdbd;
   border-radius: 15px;
@@ -97,8 +97,30 @@ export const Label = styled.div`
 
 export const InputWrapper = styled.div``;
 
+export const AddressWrapper = styled.div`
+  width: 675px;
+  @media screen and (max-width: 1024px) {
+    width: 600px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 400px;
+  }
+`;
+
+export const DivWrapper = styled.div`
+  width: 675px;
+  height: 52px;
+
+  @media screen and (max-width: 1024px) {
+    width: 600px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 400px;
+  }
+`;
+
 export const Subject = styled.input`
-  width: 850px;
+  width: 675px;
   height: 52px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
@@ -112,7 +134,7 @@ export const Subject = styled.input`
 `;
 
 export const Contents = styled.textarea`
-  width: 850px;
+  width: 675px;
   height: 300px;
   padding-left: 16px;
   padding: 14px;
@@ -131,28 +153,27 @@ export const ZipcodeWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+
+  width: 675px;
+
+  @media screen and (max-width: 1024px) {
+    width: 600px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 400px;
+  }
 `;
 
-export const Zipcode = styled.input`
-  width: 77px;
+export const State = styled.input`
+  width: 10%;
   height: 52px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
   border-radius: 15px;
 `;
 
-export const SearchButton = styled.button`
-  width: 124px;
-  height: 45px;
-  margin-left: 16px;
-  background-color: black;
-  cursor: pointer;
-  color: white;
-  border-radius: 15px;
-`;
-
 export const Address = styled.input`
-  width: 110px;
+  width: 20%;
   height: 52px;
   margin-left: 16px;
   padding-left: 16px;
@@ -161,39 +182,25 @@ export const Address = styled.input`
 `;
 
 export const AddressCity = styled.input`
-  width: 160px;
+  width: 20%;
   height: 52px;
   margin-left: 16px;
   padding-left: 20px;
   border: 1px solid #bdbdbd;
   border-radius: 15px;
-
-  @media screen and (max-width: 1024px) {
-    width: 200px;
-  }
-  @media screen and (max-width: 767px) {
-    width: 200px;
-  }
 `;
 
 export const AddressDetail = styled.input`
-  width: 450px;
+  width: 50%;
   height: 52px;
   margin-left: 16px;
   padding-left: 20px;
   border: 1px solid #bdbdbd;
   border-radius: 15px;
-
-  @media screen and (max-width: 1024px) {
-    width: 200px;
-  }
-  @media screen and (max-width: 767px) {
-    width: 200px;
-  }
 `;
 
 export const Youtube = styled.input`
-  width: 850px;
+  width: 675px;
   height: 52px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
@@ -207,7 +214,7 @@ export const Youtube = styled.input`
 `;
 
 export const ImageWrapper = styled.div`
-  width: 850px;
+  width: 675px;
   padding-top: 20px;
   border-radius: 15px;
   @media screen and (max-width: 1024px) {
@@ -240,7 +247,7 @@ export const UploadButton = styled.button`
 `;
 
 export const OptionWrapper = styled.div`
-  width: 800px;
+  width: 675px;
   @media screen and (max-width: 1024px) {
     width: 600px;
   }
@@ -261,7 +268,7 @@ export const RadioLabel = styled.label`
 `;
 
 export const ButtonWrapper = styled.div`
-  width: 800px;
+  width: 675px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

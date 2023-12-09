@@ -1,13 +1,13 @@
 import styled from "@emotion/styled";
-import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
+import { DislikeOutlined } from "@ant-design/icons";
 import ReactPlayer from "react-player";
 
 export const Wrapper = styled.div`
-  width: 950px;
-  margin: 0px 0px 100px 60px;
+  width: 750px;
+  margin: 0px 0px 100px;
 
   @media screen and (max-width: 1024px) {
-    width: 700px;
+    width: 600px;
     margin: 20px;
   }
   @media screen and (max-width: 767px) {
@@ -18,10 +18,8 @@ export const Wrapper = styled.div`
 
 export const CardWrapper = styled.div`
   border: 1px solid black;
-  padding-top: 80px;
-  padding-bottom: 100px;
-  padding-left: 102px;
-  padding-right: 102px;
+  padding: 80px 70px 100px 70px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,9 +72,9 @@ export const CreatedAt = styled.div``;
 
 export const Body = styled.div`
   width: 100%;
-  min-height: 800px;
+  min-height: 700px;
   @media screen and (max-width: 1024px) {
-    min-height: 600px;
+    min-height: 500px;
   }
   @media screen and (max-width: 767px) {
     min-height: 300px;
@@ -84,7 +82,7 @@ export const Body = styled.div`
 `;
 
 export const Title = styled.h1`
-  padding-top: 80px;
+  padding-top: 40px;
 `;
 
 export const Contents = styled.div`
@@ -142,7 +140,7 @@ export const LikeWrapper = styled.div`
 
 export const LocationIcon = styled.img``;
 
-export const LikeIcon = styled(LikeOutlined)`
+export const LikeIcon = styled.div`
   font-size: 24px;
   color: #ffd600;
   margin: 0px 20px;
@@ -163,5 +161,3 @@ export const LikeCount = styled.div`
 export const DislikeCount = styled.div`
   color: #828282;
 `;
-
-export const LinkIcon = styled.img``;

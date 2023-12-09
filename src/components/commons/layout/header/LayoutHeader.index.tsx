@@ -42,7 +42,7 @@ export default function LayoutHeader(): JSX.Element {
   return (
     <S.Wrapper>
       <S.InnerWrapper>
-        <S.InnerLogo onClick={onClickMoveToPage(`/boards`)}>posts</S.InnerLogo>
+        <S.InnerLogo onClick={onClickMoveToPage(`/`)}>posts</S.InnerLogo>
         {data ? (
           <S.MeunWrapper onClick={() => setDropdown((prev) => !prev)}>
             <S.InnerButton>
@@ -67,8 +67,12 @@ export default function LayoutHeader(): JSX.Element {
           </S.MeunWrapper>
         ) : (
           <S.MenuBar>
-            <S.Button>Community</S.Button>
-            <S.Button>Trade Product</S.Button>
+            <S.Button onClick={onClickMoveToPage(`/boards`)}>
+              Community
+            </S.Button>
+            <S.Button onClick={onClickMoveToPage(`/createaccount`)}>
+              Trade Product
+            </S.Button>
             <S.LoginBtn onClick={() => setIsOpen((prev) => !prev)}>
               Login
             </S.LoginBtn>

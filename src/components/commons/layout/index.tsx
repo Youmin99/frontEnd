@@ -8,35 +8,56 @@ import styled from "@emotion/styled";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-
   justify-content: center;
-  align-items: center;
+
+  padding-top: 50px;
 
   @media screen and (max-width: 1024px) {
     flex-direction: column;
     justify-content: center;
-    align-items: center;
   }
 `;
+
 const Body = styled.div`
   display: flex;
+  width: 70%;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
 `;
-const HIDDEN_BANNER = ["/"];
+
+const RightBody = styled.div`
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
+`;
+
+const LeftBody = styled.div`
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
+`;
+const HIDDEN_BANNER = ["/", "/boards"];
 
 interface ILayoutProps {
   children: JSX.Element;
 }
+
 export default function Layout(props: ILayoutProps): JSX.Element {
   const router = useRouter();
   const isHidden = HIDDEN_BANNER.includes(router.asPath);
   return (
     <>
       <LayoutHeader />
-      {!isHidden && <LayoutBanner />}
+      {isHidden && <LayoutBanner />}
       <Wrapper>
+        <RightBody></RightBody>
         <Body>{props.children}</Body>
+        <LeftBody></LeftBody>
       </Wrapper>
       <LayoutFooter />
     </>

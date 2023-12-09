@@ -89,6 +89,8 @@ export const MenuBar = styled.div`
   align-items: center;
 `;
 export const Button = styled.div`
+  color: black;
+  cursor: pointer;
   margin: 20px;
 `;
 

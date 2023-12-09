@@ -30,13 +30,15 @@ export type IBoard = {
 export type IBoardAddress = {
   __typename?: 'BoardAddress';
   address?: Maybe<Scalars['String']>;
-  addressDetail?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
   zipcode?: Maybe<Scalars['String']>;
 };
 
 export type IBoardAddressInput = {
   address?: InputMaybe<Scalars['String']>;
-  addressDetail?: InputMaybe<Scalars['String']>;
+  city?: InputMaybe<Scalars['String']>;
+  state?: InputMaybe<Scalars['String']>;
   zipcode?: InputMaybe<Scalars['String']>;
 };
 

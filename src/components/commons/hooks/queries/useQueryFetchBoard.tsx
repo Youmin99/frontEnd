@@ -14,7 +14,8 @@ export const FETCH_BOARD = gql`
       boardAddress {
         zipcode
         address
-        addressDetail
+        city
+        state
       }
       createdAt
       youtubeUrl

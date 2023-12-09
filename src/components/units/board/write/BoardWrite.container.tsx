@@ -3,7 +3,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import BoardWriteUI from "./BoardWrite.presenter";
 import type { IBoardWriteProps } from "./BoardWrite.types";
-import type { Address } from "react-daum-postcode";
 import { useMutationCreateBoard } from "../../../commons/hooks/mutations/useMutationCreateBoard";
 import { useMutationUpdateBoard } from "../../../commons/hooks/mutations/useMutationUpdateBoard";
 import { useForm } from "react-hook-form";
@@ -13,9 +12,6 @@ import { FETCH_BOARDS } from "../../../commons/hooks/queries/useQueryFetchBoards
 
 export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
-  const [zipcode, setZipcode] = useState("");
-  const [address, setAddress] = useState("");
   const [fileUrls, setFileUrls] = useState(["", "", ""]);
 
   const [createBoard] = useMutationCreateBoard();
@@ -37,9 +33,10 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
             contents: data.contents,
             youtubeUrl: data.youtubeUrl,
             boardAddress: {
-              zipcode: "VZS 2S8",
-              address: "Vancouver",
-              addressDetail: "qq",
+              zipcode: data.boardAddress.zipcode,
+              address: data.boardAddress.address,
+              city: data.boardAddress.city,
+              state: data.boardAddress.state,
             },
             images: [...fileUrls],
           },
@@ -57,16 +54,6 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
-  };
-
-  const onClickAddressSearch = (): void => {
-    setIsOpen((prev) => !prev);
-  };
-
-  const onCompleteAddressSearch = (data: Address): void => {
-    setAddress(data.address);
-    setZipcode(data.zonecode);
-    setIsOpen((prev) => !prev);
   };
 
   const onChangeFileUrls = (fileUrl: string, index: number): void => {
@@ -95,9 +82,10 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
             contents: data.contents,
             youtubeUrl: data.youtubeUrl,
             boardAddress: {
-              zipcode: "VZS2S8",
-              address: "Vancouver",
-              addressDetail: "qq",
+              zipcode: data.boardAddress.zipcode,
+              address: data.boardAddress.address,
+              city: data.boardAddress.city,
+              state: data.boardAddress.state,
             },
             images: [...fileUrls],
           },
@@ -125,14 +113,9 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       handleSubmit={handleSubmit}
       onClickSubmit={onClickSubmit}
       formState={formState}
-      onClickAddressSearch={onClickAddressSearch}
-      onCompleteAddressSearch={onCompleteAddressSearch}
       onClickUpdate={onClickUpdate}
       isEdit={props.isEdit}
       data={props.data}
-      isOpen={isOpen}
-      zipcode={zipcode}
-      address={address}
       fileUrls={fileUrls}
       onChangeFileUrls={onChangeFileUrls}
     />

@@ -1,18 +1,18 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 1100px;
-  padding: 100px;
+  width: 1000px;
+  padding: 60px;
   margin-bottom: 100px;
   box-shadow: 0px 0px 10px gray;
   border-radius: 30px;
 
-  @media screen and (max-width: 1024px) {
-    width: 800px;
-    padding: 80px;
+  @media screen and (max-width: 1124px) {
+    width: 700px;
+    padding: 50px;
   }
   @media screen and (max-width: 767px) {
-    width: 600px;
+    width: 500px;
     padding: 50px;
   }
 `;
@@ -40,9 +40,9 @@ export const Row = styled.div`
 
 export const ColumnHeaderBasic = styled.div`
   width: 15%;
-  text-align: center;
+  text-align: left;
   @media screen and (max-width: 767px) {
-    width: 25%px;
+    width: 25%;
   }
 `;
 
@@ -50,24 +50,24 @@ export const ColumnHeaderTitle = styled.div`
   width: 55%;
   text-align: center;
   @media screen and (max-width: 767px) {
-    width: 25%px;
+    width: 25%;
   }
 `;
 
 export const ColumnBasic = styled.div`
   width: 15%;
-  text-align: center;
+  text-align: left;
   @media screen and (max-width: 767px) {
-    width: 25%px;
+    width: 25%;
   }
 `;
 
 export const ColumnTitle = styled.div`
   width: 55%;
-  text-align: center;
+  text-align: left;
   cursor: pointer;
   @media screen and (max-width: 767px) {
-    width: 25%px;
+    width: 25%;
   }
 
   :hover {
@@ -99,3 +99,13 @@ export const Button = styled.button`
     background-color: #f5f2fc;
   }
 `;
+
+export const Header = styled.div`
+  fornt: ont-family-Poppins;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+`;
+
+export const Box = styled.div``;

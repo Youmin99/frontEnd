@@ -40,15 +40,10 @@ export interface IBoardWriteUIProps {
   }>;
   handleSubmit: UseFormHandleSubmit<FieldValues, undefined>;
   onClickSubmit: (data: any) => void;
-  onClickAddressSearch: () => void;
-  onCompleteAddressSearch: (data: any) => void;
   onClickUpdate: (data: any) => void;
   onChangeFileUrls: (fileUrls: string, index: number) => void;
   isEdit: boolean;
   data?: Pick<IQuery, "fetchBoard">;
-  isOpen: boolean;
-  zipcode: string;
-  address: string;
   fileUrls: string[];
 }
 

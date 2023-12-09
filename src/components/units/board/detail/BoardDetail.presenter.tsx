@@ -4,6 +4,8 @@ import type { IBoardDetailUIProps } from "./BoardDetail.types";
 import { Tooltip } from "antd";
 import { useMoveToPage } from "../../../commons/hooks/customs/useMoveToPage";
 import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
 export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
   const { onClickMoveToPage } = useMoveToPage();
@@ -22,11 +24,13 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
             </S.Info>
           </S.AvatarWrapper>
           <S.IconWrapper>
-            <S.LinkIcon src="/images/board/detail/link.png" />
+            <S.LikeIcon>
+              <FontAwesomeIcon icon={faThumbsUp} />
+            </S.LikeIcon>
             <Tooltip
               placement="topRight"
               title={`${props.data?.fetchBoard.boardAddress?.address ?? ""} ${
-                props.data?.fetchBoard.boardAddress?.addressDetail ?? ""
+                props.data?.fetchBoard.boardAddress?.city ?? ""
               }`}
             >
               <S.LocationIcon src="/images/board/detail/location.png" />

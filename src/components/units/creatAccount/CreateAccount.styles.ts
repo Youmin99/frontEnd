@@ -2,14 +2,13 @@ import styled from "@emotion/styled";
 import type { ISubmitButtonProps } from "./CreateAccount.types";
 
 export const Wrapper = styled.form`
-  width: 700px;
+  width: 600px;
   height: 700px;
   border: 1px solid black;
 
-  margin-left: 200px;
   margin-bottom: 50px;
   padding-top: 50px;
-  padding-bottom: 100px;
+  padding-bottom: 70px;
   padding-left: 102px;
   padding-right: 102px;
   display: flex;
