@@ -1,13 +1,10 @@
 import HomeListUI from "./HomeList.presenter";
 import { useState } from "react";
-import { useQueryFetchBoards } from "../../../commons/hooks/queries/useQueryFetchBoards";
-import { useQueryFetchBoardsCount } from "../../../commons/hooks/queries/useQueryFetchBoardsCount";
+import { useQueryFetchBestBoards } from "../../../commons/hooks/queries/useQueryFetchBestBoards";
 
 export default function HomeList(): JSX.Element {
   const [keyword, setKeyword] = useState("");
-  const { data, refetch } = useQueryFetchBoards();
-  const { data: dataBoardsCount, refetch: refetchBoardsCount } =
-    useQueryFetchBoardsCount();
+  const { data, refetch } = useQueryFetchBestBoards();
 
   const onChangeKeyword = (value: string): void => {
     setKeyword(value);
@@ -17,10 +14,8 @@ export default function HomeList(): JSX.Element {
     <HomeListUI
       data={data}
       refetch={refetch}
-      refetchBoardsCount={refetchBoardsCount}
       onChangeKeyword={onChangeKeyword}
       keyword={keyword}
-      count={dataBoardsCount?.fetchBoardsCount}
     />
   );
 }

@@ -1,18 +1,16 @@
-import type { ApolloQueryResult, OperationVariables } from "@apollo/client";
+import type { ApolloQueryResult } from "@apollo/client";
 import type {
   IQuery,
   IQueryFetchBoardsArgs,
 } from "../../../../commons/types/generated/types";
 
 export interface IHomeListUIProps {
-  data?: Pick<IQuery, "fetchBoards">;
+  data?: Pick<IQuery, "fetchBestBoards">;
   refetch: (
     variables?: Partial<IQueryFetchBoardsArgs> | undefined
-  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchBoards">>>;
+  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchBestBoards">>>;
   count?: number;
-  refetchBoardsCount: (
-    variables?: Partial<OperationVariables>
-  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchBoardsCount">>>;
+
   keyword: string;
   onChangeKeyword: (value: string) => void;
 }

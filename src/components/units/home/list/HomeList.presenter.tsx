@@ -24,7 +24,7 @@ export default function HomeListUI(props: IHomeListUIProps): JSX.Element {
       </S.Header>
       <S.TableTop />
 
-      {props.data?.fetchBoards.map((el, index) => (
+      {props.data?.fetchBestBoards.map((el, index) => (
         <S.Row key={el._id}>
           <S.ColumnBasic>{String(index + 1)}</S.ColumnBasic>
           <S.ColumnTitle
