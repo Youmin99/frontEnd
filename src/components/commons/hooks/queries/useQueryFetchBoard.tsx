@@ -11,6 +11,8 @@ export const FETCH_BOARD = gql`
       writer
       title
       contents
+      likeCount
+      dislikeCount
       boardAddress {
         zipcode
         address

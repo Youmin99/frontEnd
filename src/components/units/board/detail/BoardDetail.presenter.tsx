@@ -5,11 +5,16 @@ import { Tooltip } from "antd";
 import { useMoveToPage } from "../../../commons/hooks/customs/useMoveToPage";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBookmark,
+  faThumbsDown,
+  faThumbsUp,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
   const { onClickMoveToPage } = useMoveToPage();
   const router = useRouter();
+
   return (
     <S.Wrapper>
       <S.CardWrapper>
@@ -23,10 +28,10 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
               </S.CreatedAt>
             </S.Info>
           </S.AvatarWrapper>
-          <S.IconWrapper>
-            <S.LikeIcon>
-              <FontAwesomeIcon icon={faThumbsUp} />
-            </S.LikeIcon>
+          <S.IconHeadWrapper>
+            <S.Icon>
+              <FontAwesomeIcon icon={faBookmark} />
+            </S.Icon>
             <Tooltip
               placement="topRight"
               title={`${props.data?.fetchBoard.boardAddress?.address ?? ""} ${
@@ -35,7 +40,7 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
             >
               <S.LocationIcon src="/images/board/detail/location.png" />
             </Tooltip>
-          </S.IconWrapper>
+          </S.IconHeadWrapper>
         </S.Header>
         <S.Body>
           <S.Title>{props.data?.fetchBoard?.title}</S.Title>
@@ -58,6 +63,20 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
             />
           )}
         </S.Body>
+        <S.LikeWrapper>
+          <S.IconWrapper>
+            <S.LikeIcon onClick={props.onClickLike}>
+              <FontAwesomeIcon icon={faThumbsUp} />
+            </S.LikeIcon>
+            <S.LikeCount>{props.data?.fetchBoard.likeCount}</S.LikeCount>
+          </S.IconWrapper>
+          <S.IconWrapper>
+            <S.LikeIcon onClick={props.onClickDislike}>
+              <FontAwesomeIcon icon={faThumbsDown} />
+            </S.LikeIcon>
+            <S.LikeCount>{props.data?.fetchBoard.dislikeCount}</S.LikeCount>
+          </S.IconWrapper>
+        </S.LikeWrapper>
       </S.CardWrapper>{" "}
       {typeof router.query.boardId === "string" && (
         <S.BottomWrapper>

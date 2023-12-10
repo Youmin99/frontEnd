@@ -40,8 +40,6 @@ export const DWrapper = styled.div`
 export const InnerLogo = styled.div`
   font-size: 30px;
   font-weight: bold;
-  font-family: "live";
-  font-style: italic;
   color: black;
   cursor: pointer;
 `;

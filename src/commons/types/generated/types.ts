@@ -20,7 +20,9 @@ export type IBoard = {
   boardAddress?: Maybe<IBoardAddress>;
   contents: Scalars['String'];
   createdAt: Scalars['DateTime'];
+  dislikeCount?: Maybe<Scalars['Int']>;
   images?: Maybe<Array<Scalars['String']>>;
+  likeCount?: Maybe<Scalars['Int']>;
   title: Scalars['String'];
   user?: Maybe<IUser>;
   writer: Scalars['String'];
@@ -61,7 +63,9 @@ export type ICreateBoardCommentInput = {
 export type ICreateBoardInput = {
   boardAddress?: InputMaybe<IBoardAddressInput>;
   contents: Scalars['String'];
+  dislikeCount?: InputMaybe<Scalars['Int']>;
   images?: InputMaybe<Array<Scalars['String']>>;
+  likeCount?: InputMaybe<Scalars['Int']>;
   password: Scalars['String'];
   title: Scalars['String'];
   writer: Scalars['String'];
@@ -83,6 +87,8 @@ export type IMutation = {
   deleteBoard: Scalars['Boolean'];
   deleteBoardComment: Scalars['Boolean'];
   deleteUser: Scalars['Boolean'];
+  dislikeBoard: Scalars['Float'];
+  likeBoard: Scalars['Float'];
   loginUser: IToken;
   logoutUser: Scalars['Boolean'];
   restoreAccessToken: IToken;
@@ -126,6 +132,16 @@ export type IMutationDeleteUserArgs = {
 };
 
 
+export type IMutationDislikeBoardArgs = {
+  boardId: Scalars['String'];
+};
+
+
+export type IMutationLikeBoardArgs = {
+  boardId: Scalars['String'];
+};
+
+
 export type IMutationLoginUserArgs = {
   email: Scalars['String'];
   password: Scalars['String'];
@@ -157,6 +173,7 @@ export type IMutationUploadFileArgs = {
 
 export type IQuery = {
   __typename?: 'Query';
+  fetchBestBoards: Array<IBoard>;
   fetchBoard: IBoard;
   fetchBoardComments: Array<IBoardComment>;
   fetchBoards: Array<IBoard>;
@@ -199,7 +216,9 @@ export type IUpdateBoardCommentInput = {
 export type IUpdateBoardInput = {
   boardAddress?: InputMaybe<IBoardAddressInput>;
   contents: Scalars['String'];
+  dislikeCount?: InputMaybe<Scalars['Int']>;
   images?: InputMaybe<Array<Scalars['String']>>;
+  likeCount?: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
   youtubeUrl?: InputMaybe<Scalars['String']>;
 };
