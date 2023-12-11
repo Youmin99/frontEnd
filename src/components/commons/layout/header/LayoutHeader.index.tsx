@@ -70,9 +70,9 @@ export default function LayoutHeader(): JSX.Element {
             <S.Button onClick={onClickMoveToPage(`/boards`)}>
               Community
             </S.Button>
-            <S.Button onClick={onClickMoveToPage(`/createaccount`)}>
+            {/* <S.Button onClick={onClickMoveToPage(`/createaccount`)}>
               Trade Product
-            </S.Button>
+            </S.Button> */}
             <S.LoginBtn onClick={() => setIsOpen((prev) => !prev)}>
               Login
             </S.LoginBtn>

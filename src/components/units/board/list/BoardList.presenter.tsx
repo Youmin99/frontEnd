@@ -1,9 +1,11 @@
-import { getDate } from "../../../../commons/libraries/utils";
+import { getCompareDate, getDate } from "../../../../commons/libraries/utils";
 import { useMoveToPage } from "../../../commons/hooks/customs/useMoveToPage";
 import Paginations01 from "../../../commons/paginations/01/Paginations01.container";
 import Searchbars from "../../search/Searchbar.container";
 import * as S from "./BoardList.styles";
 import type { IBoardListUIProps } from "./BoardList.types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFire } from "@fortawesome/free-solid-svg-icons";
 
 export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
   const { onClickMoveToPage } = useMoveToPage();
@@ -38,6 +40,12 @@ export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
               onClick={onClickMoveToPage(`/boards/${el._id}`)}
             >
               {el.title}
+              {"  "}
+              {getCompareDate(el.createdAt) && (
+                <S.Icon>
+                  <FontAwesomeIcon icon={faFire} />
+                </S.Icon>
+              )}
             </S.ColumnTitle>
             <S.ColumnBasic>{el.writer}</S.ColumnBasic>
             <S.ColumnBasic>{getDate(el.createdAt)}</S.ColumnBasic>

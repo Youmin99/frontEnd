@@ -131,14 +131,14 @@ export const Image = styled.img`
   width: 300px;
   height: 300px;
   margin-bottom: 30px;
+  @media screen and (max-width: 767px) {
+    width: 180px;
+    height: 180px;
+  }
 `;
 
 export const Youtube = styled(ReactPlayer)`
   margin: auto;
-  @media screen and (max-width: 767px) {
-    width: 350px;
-    margin: 20px;
-  }
 `;
 
 export const LikeWrapper = styled.div`

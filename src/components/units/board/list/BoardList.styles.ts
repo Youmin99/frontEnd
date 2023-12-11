@@ -17,6 +17,8 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const Icon = styled.span``;
+
 export const TableTop = styled.div`
   border-top: 2px solid gray;
   margin-top: 20px;
