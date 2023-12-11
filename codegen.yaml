@@ -5,7 +5,15 @@
 #       - typescript
 #     config:
 #       typesPrefix: I
-schema: http://localhost:5000/graphql
+# schema: http://localhost:5000/graphql
+# generates:
+#   ./src/commons/types/generated/types.ts:
+#     plugins:
+#       - typescript
+#     config:
+#       typesPrefix: I
+
+schema: http://35.247.105.105:5000/graphql
 generates:
   ./src/commons/types/generated/types.ts:
     plugins:

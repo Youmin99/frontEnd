@@ -8,6 +8,7 @@ export const Wrapper = styled.form`
 
   margin-bottom: 50px;
   padding: 50px 102px 70px 102px;
+  margin: 20px 0px 100px 0px;
 
   display: flex;
   flex-direction: column;
@@ -20,12 +21,10 @@ export const Wrapper = styled.form`
   @media screen and (max-width: 1024px) {
     width: 500px;
     padding: 50px 50px 70px 50px;
-    margin: 20px 0px 20px 0px;
   }
   @media screen and (max-width: 767px) {
     width: 350px;
     height: 550px;
-    margin: 20px 0px 20px 0px;
   }
 `;
 
