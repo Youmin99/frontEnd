@@ -51,7 +51,7 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
 
   const uploadLink = createUploadLink({
     // uri: "http://localhost:5000/graphql",
-    uri: "http://35.247.105.105:5000/graphql",
+    uri: "https://postboard.info/graphql",
     headers: { Authorization: `Bearer ${accessToken}` },
     credentials: "include",
   });

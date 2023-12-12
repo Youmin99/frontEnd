@@ -13,7 +13,7 @@
 #     config:
 #       typesPrefix: I
 
-schema: http://35.247.105.105:5000/graphql
+schema: https://postboard.info/graphql
 generates:
   ./src/commons/types/generated/types.ts:
     plugins:
